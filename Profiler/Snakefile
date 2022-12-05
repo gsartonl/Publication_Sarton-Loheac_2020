@@ -1,0 +1,207 @@
+########### rule file for pathways analysis  ###########
+## 		@gsartonl - pengel 		##
+## 		03.08.2021			##
+###########################################################
+
+configfile: "setup/config.yaml"
+
+# ----- Load modules -----#
+import os
+from datetime import datetime
+from pathlib import Path
+
+# ----- Set variables -----#
+path = config['path']
+pathOutDir=''.join(path + config['OutputDirectory'])
+pathGapmind = ''.join(path + config['gapmind_aa_biosynth'])
+pathKO = ''.join(path + config['ko_pathways'])
+KOfile= ''.join(config['KOfile'])
+pathMacsyfinder = ''.join(path + config['macsyfinder'])
+path_all_sp_score = ''.join(path + config['all_sp_score'])
+path_genomes_order = ''.join(path + config['genome_order'])
+path_pathways_order = ''.join(path + config['pathways_order'])
+path_faas= ''.join(path + config['all_faas'])
+path_MacSyModel=''.join(path + config['MacSyModel'])
+
+
+rule all :
+	input :
+
+		KO_scorer_out = pathKO + '/all_genomes_ko_ghostkoala_output.txt',
+		outGraph = ''.join(path) + '/' + datetime.now().strftime('%Y%m%d') +'_'+ ''.join(config['OutputDirectory']).lstrip('/') + '_HeatMap.pdf',
+		aa_summary=pathGapmind + '/aa_pathways_scores.summary',
+		orgs5=path_faas + "/orgfile.txt",
+		outfile = "PaperBLAST/tmp/DvH/aa.hits",
+		sum = "PaperBLAST/tmp/DvH/aa.sum.rules",
+		ff = pathOutDir +'/Finished.log'
+
+
+
+# ----- rules -----#
+
+rule prepare_gapmind_db :
+	input : path_faas
+	output:
+		orgs = path_faas + "/orgfile.txt"
+	script :
+		"setup/scripts/prepare_gapmind_db.py"
+
+rule gapmind_buildorgs :
+	input :
+		orgfile=rules.prepare_gapmind_db.output.orgs
+	output :
+		orgDB = "PaperBLAST/tmp/DvH/orgs.org"
+	params :
+		prefix = "PaperBLAST/tmp/DvH/orgs"
+	shell :
+		"PaperBLAST/bin/buildorgs.pl -out {params.prefix} -orgfile {input.orgfile}"
+
+rule run_gapmind_hits :
+	input :
+		orgDB = "PaperBLAST/tmp/DvH/orgs.org"
+	params :
+		prefix = "PaperBLAST/tmp/DvH/orgs"
+	output :
+		aaHits = "PaperBLAST/tmp/DvH/aa.hits"
+	shell :
+		"PaperBLAST/bin/gapsearch.pl -orgs {params.prefix} -set aa -out {output.aaHits} -nCPU 4"
+
+
+rule run_gapmind_revhits :
+	input :
+		aaHits = rules.run_gapmind_hits.output.aaHits
+	params :
+		prefix = "PaperBLAST/tmp/DvH/orgs",
+		curated = "PaperBLAST/tmp/path.aa/curated.faa.udb"
+	output :
+		revHits = "PaperBLAST/tmp/DvH/aa.revhits"
+	shell :
+		"PaperBLAST/bin/gaprevsearch.pl -orgs {params.prefix} -hits {input.aaHits} -curated {params.curated} -out {output.revHits} -nCPU 4"
+
+rule run_gapmind_summary :
+	input :
+		aaHits = rules.run_gapmind_hits.output.aaHits,
+		revHits = rules.run_gapmind_revhits.output.revHits
+	params :
+		prefix = "PaperBLAST/tmp/DvH/orgs",
+		curated = "PaperBLAST/tmp/path.aa/curated.aa/curated.faa.db",
+		sumPrefix = "PaperBLAST/tmp/DvH/aa.sum"
+	output :
+		sum = "PaperBLAST/tmp/DvH/aa.sum.rules"
+	shell :
+		"PaperBLAST/bin/gapsummary.pl -orgs {params.prefix} -set aa -hits {input.aaHits} -rev {input.revHits} -out {params.sumPrefix} "
+
+
+
+rule gapmind_aa_biosynth :
+	input:
+		rulesIn = 'PaperBLAST/tmp/DvH/aa.sum.rules'
+	output:
+
+		tmpsummary = pathGapmind + '/tmp_aa_pathways_scores.summary'
+	log : 'logs/gapmind_aa_biosynth.log'
+	shell:
+		"setup/scripts/sum_rule_files.sh {input.rulesIn} > {output.tmpsummary} "
+
+
+
+rule change_gapmind_names :
+	input :
+		inFile=rules.gapmind_aa_biosynth.output.tmpsummary,
+		orgDB="PaperBLAST/tmp/DvH/orgs.org"
+	output :
+		summary=pathGapmind + '/aa_pathways_scores.summary'
+	script :
+		"setup/scripts/change_gapmind_names.py"
+
+
+rule prepare_KO:
+	input:
+		gostkoala_in = pathKO + KOfile
+	output:
+		gostkoala_out = pathKO + '/all_genomes_ghostkoala_annotation.txt'
+	params:
+		fromFile="False",
+		oldStrings='_',
+		newStrings='\t'
+	log : 'logs/prepare_KO.log'
+	script:
+		"setup/scripts/pySED.py"
+
+
+rule ko_scorer:
+	input:
+		rules = 'setup/input_rules_v3.txt',
+		KO_scorer_in = pathKO + KOfile
+	output:
+		KO_scorer_out = pathKO + '/all_genomes_ko_ghostkoala_output.txt'
+	log : 'logs/ko_scorer.log'
+	shell:
+		"setup/scripts/KO_scorer_v1.pl {input.rules} {input.KO_scorer_in} {output.KO_scorer_out}"
+
+
+rule macsyfinder :
+	input:
+		pathFaa=path_faas
+
+	params :
+		modelDir=path_MacSyModel,
+		model = 'TXSS',
+		cores = '3',
+		db_type = 'unordered'
+
+	output:
+		macsyfinder_out = directory(pathMacsyfinder)
+
+	log : 'logs/macsyfinder.log'
+	shell:
+		"setup/scripts/macsyfinder.sh {input.pathFaa} {output.macsyfinder_out} {params.modelDir} {params.model} {params.db_type} {params.cores}"
+
+rule macsyScores :
+	input :
+		inPath=rules.macsyfinder.output.macsyfinder_out
+	output :
+		outFile= 'macsyfinder_mainsystems.txt'
+	log : 'logs/macsyfinder_combine_outputs.log'
+	script:
+		'setup/scripts/pyParseMacsyfinder.py'
+
+
+
+rule combineOutputs :
+	input:
+		gapmind = rules.change_gapmind_names.output.summary,
+		KO = rules.ko_scorer.output.KO_scorer_out,
+		macsyfinder = rules.macsyScores.output.outFile,
+		StrainPattern = ''.join(path + config['StrainPattern'])
+	output:
+		all_scores = ''.join(path) + '/all_completeness_scores.txt'
+	log : 'logs/combineOutputs.log'
+	script :
+		"setup/scripts/pyCombineResults.py"
+
+rule heatmap :
+	input:
+		workingDir = path,
+		all_sp_score = rules.combineOutputs.output.all_scores,
+		genome_order = path_genomes_order,
+		pathways_order = path_pathways_order
+	output :
+		outGraph = ''.join(path) + '/' + datetime.now().strftime('%Y%m%d') +'_'+ ''.join(config['OutputDirectory']).lstrip('/') + '_HeatMap.pdf'
+	log : 'logs/heatmap.log'
+	conda : 'setup/envs/R-heatmap.yaml'
+	script :
+		"setup/scripts/completeness_heatmap.R"
+
+rule copyAndClean :
+	input :
+		heat = rules.heatmap.output.outGraph
+	output :
+		ff=pathOutDir + '/Finished.log'
+	params :
+		OutDir=pathOutDir
+	shell :
+		"setup/scripts/cleanUp.sh {params.OutDir} {output.ff}"
+
+## make few lines to comment
+## make a few lines to remove files at the begining of the run

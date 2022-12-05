@@ -1,0 +1,471 @@
+Pathway	KEGG_ortholog	Step	Description
+EMP	K01810	A_1_a	GPI, pgi; glucose-6-phosphate isomerase [EC:5.3.1.9]
+EMP	K06859	A_1_b	pgi1; glucose-6-phosphate isomerase, archaeal [EC:5.3.1.9]
+EMP	K13810	A_1_c	tal-pgi; transaldolase / glucose-6-phosphate isomerase [EC:2.2.1.2 5.3.1.9]
+EMP	K15916	A_1_d	pgi-pmi; glucose/mannose-6-phosphate isomerase [EC:5.3.1.9 5.3.1.8]
+EMP	K16370	A_2_a	pfkB; 6-phosphofructokinase 2 [EC:2.7.1.11]
+EMP	K21071	A_2_b	pfk, pfp; ATP-dependent phosphofructokinase / diphosphate-dependent phosphofructokinase [EC:2.7.1.11
+EMP	K24182	A_2_c	PFK9; 6-phosphofructokinase [EC:2.7.1.11]
+EMP	K00850	A_2_d	pfkA, PFK; 6-phosphofructokinase 1 [EC:2.7.1.11]
+EMP	K00918	A_2_e	pfkC; ADP-dependent phosphofructokinase/glucokinase [EC:2.7.1.146 2.7.1.147]
+EMP	K00895	A_2_f	pfp, PFP; diphosphate-dependent phosphofructokinase [EC:2.7.1.90]
+EMP	K16305	A_2_g:A_3_e	K16305; fructose-bisphosphate aldolase / 6-deoxy-5-ketofructose 1-phosphate synthase [EC:4.1.2.13 2.
+EMP	K01622	A_3_a	K01622; fructose 1,6-bisphosphate aldolase/phosphatase [EC:4.1.2.13 3.1.3.11]
+EMP	K01623	A_3_b	ALDO; fructose-bisphosphate aldolase, class I [EC:4.1.2.13]
+EMP	K01624	A_3_c	FBA, fbaA; fructose-bisphosphate aldolase, class II [EC:4.1.2.13]
+EMP	K11645	A_3_d	fbaB; fructose-bisphosphate aldolase, class I [EC:4.1.2.13]
+EMP	K16306	A_3_f	K16306; fructose-bisphosphate aldolase / 2-amino-3,7-dideoxy-D-threo-hept-6-ulosonate synthase [EC:4
+EMP	K10705	A_4_a_1-2:A_4_g_1-2	GAPDHS; glyceraldehyde-3-phosphate dehydrogenase, spermatogenic [EC:1.2.1.12]
+EMP	K00927	A_4_a_2-2:A_4_b_2-2:A_4_c_2-2	PGK, pgk; phosphoglycerate kinase [EC:2.7.2.3]
+EMP	K00134	A_4_b_1-2:A_4_h_1-2	GAPDH, gapA; glyceraldehyde 3-phosphate dehydrogenase [EC:1.2.1.12]
+EMP	K00150	A_4_c_1-2:A_4_i_1-2	gap2; glyceraldehyde-3-phosphate dehydrogenase (NAD(P)) [EC:1.2.1.59]
+EMP	K18978	A_4_d	gapN; glyceraldehyde-3-phosphate dehydrogenase [NAD(P)+] [EC:1.2.1.90]
+EMP	K00131	A_4_e	gapN; glyceraldehyde-3-phosphate dehydrogenase (NADP+) [EC:1.2.1.9]
+EMP	K11389	A_4_f	gapor; glyceraldehyde-3-phosphate dehydrogenase (ferredoxin) [EC:1.2.7.6]
+EMP	K01837	A_4_g_2-2:A_4_h_2-2:A_4_i_2-2:A_5_c	BPGM; bisphosphoglycerate/phosphoglycerate mutase [EC:5.4.2.4 5.4.2.11]
+EMP	K15634	A_5_a	gpmB; 2,3-bisphosphoglycerate-dependent phosphoglycerate mutase [EC:5.4.2.11]
+EMP	K01834	A_5_b	PGAM, gpmA; 2,3-bisphosphoglycerate-dependent phosphoglycerate mutase [EC:5.4.2.11]
+EMP	K15635	A_5_d	apgM; 2,3-bisphosphoglycerate-independent phosphoglycerate mutase [EC:5.4.2.12]
+EMP	K15633	A_5_e	gpmI; 2,3-bisphosphoglycerate-independent phosphoglycerate mutase [EC:5.4.2.12]
+EMP	K03103	A_5_f	MINPP1; multiple inositol-polyphosphate phosphatase / 2,3-bisphosphoglycerate 3-phosphatase [EC:3.1.
+EMP	K01689	A_6_a	ENO, eno; enolase [EC:4.2.1.11]
+EMP	K12406	A_7_a	PKLR; pyruvate kinase isozymes R/L [EC:2.7.1.40]
+EMP	K00873	A_7_b	PK, pyk; pyruvate kinase [EC:2.7.1.40]
+EMP	K01006	A_7_c	ppdK; pyruvate, orthophosphate dikinase [EC:2.7.9.1]
+EMP	K01007	A_7_d	pps, ppsA; pyruvate, water dikinase [EC:2.7.9.2]
+Heme	K01845	B_3_a	hemL; glutamate-1-semialdehyde 2,1-aminomutase [EC:5.4.3.8] 
+Heme	K02492	B_2_a	hemA; glutamyl-tRNA reductase [EC:1.2.1.70] 
+Heme	K14163	B_1_b	EPRS; bifunctional glutamyl/prolyl-tRNA synthetase [EC:6.1.1.17 6.1.1.15] 
+Heme	K01885	B_1_a	EARS, gltX; glutamyl-tRNA synthetase [EC:6.1.1.17] 
+Heme	K01772	A_8_a:B_10_a	hemH, FECH; protoporphyrin/coproporphyrin ferrochelatase [EC:4.99.1.1 4.99.1.9] 
+Heme	K00231	A_7_c:B_9_c	PPOX, hemY; protoporphyrinogen/coproporphyrinogen III oxidase [EC:1.3.3.4 1.3.3.15] 
+Heme	K00230	A_7_b:B_9_b	hemG; menaquinone-dependent protoporphyrinogen oxidase [EC:1.3.5.3] 
+Heme	K08973	A_7_a:B_9_a	hemJ; protoporphyrinogen IX oxidase [EC:1.3.99.-] 
+Heme	K02495	A_6_b:B_8_b	hemN, hemZ; oxygen-independent coproporphyrinogen III oxidase [EC:1.3.98.3] 
+Heme	K00228	A_6_a:B_8_a	CPOX, hemF; coproporphyrinogen III oxidase [EC:1.3.3.3] 
+Heme	K01599	A_5_a:B_7_a	hemE, UROD; uroporphyrinogen decarboxylase [EC:4.1.1.37] 
+Heme	K13543	A_4_c:B_6_c	hemDX; uroporphyrinogen III methyltransferase / synthase [EC:2.1.1.107 4.2.1.75] 
+Heme	K13542	A_4_b:B_6_b	cobA-hemD; uroporphyrinogen III methyltransferase / synthase [EC:2.1.1.107 4.2.1.75] 
+Heme	K01719	A_4_a:B_6_a	hemD, UROS; uroporphyrinogen-III synthase [EC:4.2.1.75] 
+Heme	K01749	A_3_a:B_5_a	hemC, HMBS; hydroxymethylbilane synthase [EC:2.5.1.61] 
+Heme	K01698	A_2_a:B_4_a	hemB, ALAD; porphobilinogen synthase [EC:4.2.1.24] 
+Heme	K00643	A_1_a	E2.3.1.37, ALAS; 5-aminolevulinate synthase [EC:2.3.1.37] 
+Vitamin B12	K00643	A_1_a:C_1_a	E2.3.1.37, ALAS; 5-aminolevulinate synthase [EC:2.3.1.37] 
+Vitamin B12	K05936	A_10_a:B_12_a:C_9_a:D_11_a	cobM, cbiF; precorrin-4/cobalt-precorrin-4 C11-methyltransferase [EC:2.1.1.133 2.1.1.271] 
+Vitamin B12	K02189	A_11_a:B_13_a	cbiG; cobalt-precorrin 5A hydrolase [EC:3.7.1.12] 
+Vitamin B12	K02188	A_12_a:B_14_a	cbiD; cobalt-precorrin-5B (C1)-methyltransferase [EC:2.1.1.195] 
+Vitamin B12	K05895	A_13_a:B_15_a:C_11_a:D_13_a	cobK-cbiJ; precorrin-6A/cobalt-precorrin-6A reductase [EC:1.3.1.54 1.3.1.106] 
+Vitamin B12	K00595	A_14_b:B_16_b:A_15_b:B_17_b:C_12_a:D_14_a	cobL-cbiET; precorrin-6B C5,15-methyltransferase / cobalt-precorrin-6B C5,C15-methyltransferase [EC: 
+Vitamin B12	K03399	A_15_a:B_17_a	cbiE; cobalt-precorrin-7 (C5)-methyltransferase [EC:2.1.1.289] 
+Vitamin B12	K06042	A_16_a:B_18_a:C_13_a:D_15_a	cobH-cbiC; precorrin-8X/cobalt-precorrin-8 methylmutase [EC:5.4.99.61 5.4.99.60] 
+Vitamin B12	K02224	A_17_a:B_19_a:C_14_a:D_16_a	cobB-cbiA; cobyrinic acid a,c-diamide synthase [EC:6.3.5.9 6.3.5.11] 
+Vitamin B12	K13786	A_18_a_1-2:B_20_a_1-2:A_18_b_1-2:B_20_b_1-2:C_16_a_1-2:D_18_a_1-2:C_16_b_1-2:D_18_b_1-2:C_16_d:D_18_d	cobR; cob(II)yrinic acid a,c-diamide reductase [EC:1.16.8.-] 
+Vitamin B12	K19221	A_18_a_2-2:B_20_a_2-2:A_18_d:B_20_d:C_16_a_2-2:D_18_a_2-2	cobA, btuR; cob(I)alamin adenosyltransferase [EC:2.5.1.17] 
+Vitamin B12	K00798	A_18_b_2-2:B_20_b_2-2:A_18_c:B_20_c:C_16_b_2-2:D_18_b_2-2:C_16_c:D_18_c	MMAB, pduO; cob(I)alamin adenosyltransferase [EC:2.5.1.17] 
+Vitamin B12	K02232	A_19_a:B_21_a:C_17_a:D_19_a	cobQ, cbiP; adenosylcobyric acid synthase [EC:6.3.5.10] 
+Vitamin B12	K01698	A_2_a:C_2_a:B_4_a:D_4_a	hemB, ALAD; porphobilinogen synthase [EC:4.2.1.24] 
+Vitamin B12	K02225	A_20_a:B_22_a:C_18_a:D_20_a	cobC1, cobC; cobalamin biosynthesis protein CobC 
+Vitamin B12	K02227	A_20_b:B_22_b:C_18_b:D_20_b	cbiB, cobD; adenosylcobinamide-phosphate synthase [EC:6.3.1.10] 
+Vitamin B12	K02231	A_21_a:B_23_a:C_19_a:D_21_a	cobP, cobU; adenosylcobinamide kinase / adenosylcobinamide-phosphate guanylyltransferase [EC:2.7.1.1 
+Vitamin B12	K19712	A_21_b:B_23_b:C_19_b:D_21_b	cobY; adenosylcobinamide-phosphate guanylyltransferase [EC:2.7.7.62] 
+Vitamin B12	K02233	A_22_a:B_24_a:C_20_a:D_22_a	E2.7.8.26, cobS, cobV; adenosylcobinamide-GDP ribazoletransferase [EC:2.7.8.26] 
+Vitamin B12	K01749	A_3_a:C_3_a:B_5_a:D_5_a	hemC, HMBS; hydroxymethylbilane synthase [EC:2.5.1.61] 
+Vitamin B12	K01719	A_4_a:C_4_a:B_6_a:D_6_a	hemD, UROS; uroporphyrinogen-III synthase [EC:4.2.1.75] 
+Vitamin B12	K13542	A_4_b:C_4_b:B_6_b:D_6_b:A_5_b:C_5_b:B_7_b:D_7_b	cobA-hemD; uroporphyrinogen III methyltransferase / synthase [EC:2.1.1.107 4.2.1.75] 
+Vitamin B12	K13543	A_4_c:C_4_c:B_6_c:D_6_c:A_5_a:C_5_a:B_7_a:D_7_a	hemDX; uroporphyrinogen III methyltransferase / synthase [EC:2.1.1.107 4.2.1.75] 
+Vitamin B12	K00589	A_5_c:C_5_c:B_7_c:D_7_c	MET1; uroporphyrin-III C-methyltransferase [EC:2.1.1.107] 
+Vitamin B12	K02303	A_5_d:C_5_d:B_7_d:D_7_d	cobA; uroporphyrin-III C-methyltransferase [EC:2.1.1.107] 
+Vitamin B12	K02496	A_5_e:C_5_e:B_7_e:D_7_e	hemX; uroporphyrin-III C-methyltransferase [EC:2.1.1.107] 
+Vitamin B12	K02304	A_6_a:B_8_a	MET8; precorrin-2 dehydrogenase / sirohydrochlorin ferrochelatase [EC:1.3.1.76 4.99.1.4] 
+Vitamin B12	K24866	A_6_b:B_8_b	sirC; precorrin-2 dehydrogenase [EC:1.3.1.76] 
+Vitamin B12	K02302	A_6_c:B_8_c:A_5_f:C_5_f:B_7_f:D_7_f	cysG; uroporphyrin-III C-methyltransferase / precorrin-2 dehydrogenase / sirohydrochlorin ferrochela 
+Vitamin B12	K02190	A_7_a:B_9_a	cbiK; sirohydrochlorin cobaltochelatase [EC:4.99.1.3] 
+Vitamin B12	K02191	A_14_a:B_16_a	cbiT; cobalt-precorrin-6B (C15)-methyltransferase [EC:2.1.1.196] 
+Vitamin B12	K03795	A_7_b:B_9_b	cbiX; sirohydrochlorin cobaltochelatase [EC:4.99.1.3] 
+Vitamin B12	K22011	A_7_c:B_9_c	cfbA; sirohydrochlorin cobalto/nickelchelatase [EC:4.99.1.3 4.99.1.11] 
+Vitamin B12	K03394	A_8_a:B_10_a:C_6_a:D_8_a	cobI-cbiL; precorrin-2/cobalt-factor-2 C20-methyltransferase [EC:2.1.1.130 2.1.1.151] 
+Vitamin B12	K13540	A_8_b:B_10_b:C_6_b:D_8_b:C_8_b:D_10_b	cobIJ; precorrin-2 C20-methyltransferase / precorrin-3B C17-methyltransferase [EC:2.1.1.130 2.1.1.13 
+Vitamin B12	K05934	A_9_a:B_11_a:C_8_a:D_10_a	cobJ, cbiH; precorrin-3B C17-methyltransferase / cobalt-factor III methyltransferase [EC:2.1.1.131 2 
+Vitamin B12	K13541	A_9_b:B_11_b:A_11_b:B_13_b:C_8_c:D_10_c	cbiGH-cobJ; cobalt-precorrin 5A hydrolase / cobalt-factor III methyltransferase / precorrin-3B C17-m 
+Vitamin B12	K21479	A_9_c:B_11_c	cbiH60; cobalt-factor III methyltransferase [EC:2.1.1.272] 
+Vitamin B12	K01885	B_1_a:D_1_a	EARS, gltX; glutamyl-tRNA synthetase [EC:6.1.1.17] 
+Vitamin B12	K14163	B_1_b:D_1_b	EPRS; bifunctional glutamyl/prolyl-tRNA synthetase [EC:6.1.1.17 6.1.1.15] 
+Vitamin B12	K02492	B_2_a:D_2_a	hemA; glutamyl-tRNA reductase [EC:1.2.1.70] 
+Vitamin B12	K01845	B_3_a:D_3_a	hemL; glutamate-1-semialdehyde 2,1-aminomutase [EC:5.4.3.8] 
+Vitamin B12	K02228	C_10_a:D_12_a	cobF; precorrin-6A synthase [EC:2.1.1.152] 
+Vitamin B12	K02230	C_15_a:D_17_a	cobN; cobaltochelatase CobN [EC:6.6.1.2] 
+Vitamin B12	K09882	C_15_b:D_17_b	cobS; cobaltochelatase CobS [EC:6.6.1.2] 
+Vitamin B12	K09883	C_15_c:D_17_c	cobT; cobaltochelatase CobT [EC:6.6.1.2] 
+Vitamin B12	K02229	C_7_a:D_9_a	cobG; precorrin-3B synthase [EC:1.14.13.83] 
+TCA cycle	K15230	A_1_a_1-2	aclA; ATP-citrate lyase alpha-subunit [EC:2.3.3.8] 
+TCA cycle	K15231	A_1_a_2-2	aclB; ATP-citrate lyase beta-subunit [EC:2.3.3.8] 
+TCA cycle	K01647	A_1_b	CS, gltA; citrate synthase [EC:2.3.3.1] 
+TCA cycle	K05942	A_1_c	E2.3.3.3; citrate (Re)-synthase [EC:2.3.3.3] 
+TCA cycle	K01648	A_1_d	ACLY; ATP citrate (pro-S)-lyase [EC:2.3.3.8] 
+TCA cycle	K01682	A_2_a	acnB; aconitate hydratase 2 / 2-methylisocitrate dehydratase [EC:4.2.1.3 4.2.1.99] 
+TCA cycle	K01681	A_2_b	ACO, acnA; aconitate hydratase [EC:4.2.1.3] 
+TCA cycle	K17753	A_3_a	HICDH; isocitrate--homoisocitrate dehydrogenase [EC:1.1.1.286] 
+TCA cycle	K00031	A_3_b	IDH1, IDH2, icd; isocitrate dehydrogenase [EC:1.1.1.42] 
+TCA cycle	K00030	A_3_c	IDH3; isocitrate dehydrogenase (NAD+) [EC:1.1.1.41] 
+TCA cycle	K00164	A_4_a_1-2	OGDH, sucA; 2-oxoglutarate dehydrogenase E1 component [EC:1.2.4.2] 
+TCA cycle	K00658	A_4_a_2-2	DLST, sucB; 2-oxoglutarate dehydrogenase E2 component (dihydrolipoamide succinyltransferase) [EC:2.3 
+TCA cycle	K01616	A_4_b	kgd; multifunctional 2-oxoglutarate metabolism enzyme [EC:2.2.1.5 4.1.1.71 1.2.4.2 2.3.1.61] 
+TCA cycle	K00174	A_4_c_1-2:A_4_d_1-4	korA, oorA, oforA; 2-oxoglutarate/2-oxoacid ferredoxin oxidoreductase subunit alpha [EC:1.2.7.3 1.2.7.11]
+TCA cycle	K00175	A_4_c_2-2:A_4_d_2-4	korB, oorB, oforB; 2-oxoglutarate/2-oxoacid ferredoxin oxidoreductase subunit beta [EC:1.2.7.3 1.2.7.11]
+TCA cycle	K00176	A_4_d_3-4	korD, oorD; 2-oxoglutarate ferredoxin oxidoreductase subunit delta [EC:1.2.7.3] 
+TCA cycle	K00177	A_4_d_4-4	korC, oorC; 2-oxoglutarate ferredoxin oxidoreductase subunit gamma [EC:1.2.7.3] 
+TCA cycle	K01899	A_5_a_1-2	LSC1; succinyl-CoA synthetase alpha subunit [EC:6.2.1.4 6.2.1.5] 
+TCA cycle	K01900	A_5_a_2-2	LSC2; succinyl-CoA synthetase beta subunit [EC:6.2.1.4 6.2.1.5] 
+TCA cycle	K01902	A_5_b_1-2	sucD; succinyl-CoA synthetase alpha subunit [EC:6.2.1.5] 
+TCA cycle	K01903	A_5_b_2-2	sucC; succinyl-CoA synthetase beta subunit [EC:6.2.1.5] 
+TCA cycle	K18118	A_5_c	aarC, cat1; succinyl-CoA:acetate CoA-transferase [EC:2.8.3.18] 
+TCA cycle	K00239	A_6_a_1-4:A_6_d_1-4:A_6_e_1-4	sdhA, frdA; succinate dehydrogenase / fumarate reductase, flavoprotein subunit [EC:1.3.5.1 1.3.5.4] 
+TCA cycle	K00240	A_6_a_2-4:A_6_d_2-4:A_6_e_2-4	sdhB, frdB; succinate dehydrogenase / fumarate reductase, iron-sulfur subunit [EC:1.3.5.1 1.3.5.4] 
+TCA cycle	K00241	A_6_a_3-4:A_6_d_3-4:A_6_e_3-4	sdhC, frdC; succinate dehydrogenase / fumarate reductase, cytochrome b subunit 
+TCA cycle	K00242	A_6_a_4-4	sdhD, frdD; succinate dehydrogenase / fumarate reductase, membrane anchor subunit 
+TCA cycle	K00244	A_6_b_1-4:A_6_f_1-4:A_6_g_1-4	frdA; fumarate reductase flavoprotein subunit [EC:1.3.5.4] 
+TCA cycle	K00245	A_6_b_2-4:A_6_f_2-4:A_6_g_2-4	frdB; fumarate reductase iron-sulfur subunit [EC:1.3.5.4] 
+TCA cycle	K00246	A_6_b_3-4:A_6_f_3-4:A_6_g_3-4	frdC; fumarate reductase subunit C 
+TCA cycle	K00247	A_6_b_4-4	frdD; fumarate reductase subunit D 
+TCA cycle	K00234	A_6_c_1-4	SDHA, SDH1; succinate dehydrogenase (ubiquinone) flavoprotein subunit [EC:1.3.5.1] 
+TCA cycle	K00235	A_6_c_2-4	SDHB, SDH2; succinate dehydrogenase (ubiquinone) iron-sulfur subunit [EC:1.3.5.1] 
+TCA cycle	K00236	A_6_c_3-4	SDHC, SDH3; succinate dehydrogenase (ubiquinone) cytochrome b560 subunit 
+TCA cycle	K00237	A_6_c_4-4	SDHD, SDH4; succinate dehydrogenase (ubiquinone) membrane anchor subunit 
+TCA cycle	K18860	A_6_d_4-4:A_6_f_4-4	sdhD, frdD; putative succinate dehydrogenase / fumarate reductase, subunit D 
+TCA cycle	K18859	A_6_e_4-4:A_6_g_4-4	sdhD, frdD; succinate dehydrogenase / fumarate reductase, subunit D 
+TCA cycle	K01677	A_7_a_1-2	E4.2.1.2AA, fumA; fumarate hydratase subunit alpha [EC:4.2.1.2] 
+TCA cycle	K01678	A_7_a_2-2	E4.2.1.2AB, fumB; fumarate hydratase subunit beta [EC:4.2.1.2] 
+TCA cycle	K01676	A_7_b	E4.2.1.2A, fumA, fumB; fumarate hydratase, class I [EC:4.2.1.2] 
+TCA cycle	K01679	A_7_c	E4.2.1.2B, fumC, FH; fumarate hydratase, class II [EC:4.2.1.2] 
+TCA cycle	K01774	A_7_d	fumE; fumarate hydratase E [EC:4.2.1.2] 
+TCA cycle	K01675	A_7_e	fumD; fumarate hydratase D [EC:4.2.1.2] 
+TCA cycle	K00116	A_8_a	mqo; malate dehydrogenase (quinone) [EC:1.1.5.4] 
+TCA cycle	K00024	A_8_b	mdh; malate dehydrogenase [EC:1.1.1.37] 
+TCA cycle	K00025	A_8_c	MDH1; malate dehydrogenase [EC:1.1.1.37] 
+TCA cycle	K00026	A_8_d	MDH2; malate dehydrogenase [EC:1.1.1.37] 
+PPP	K00036	A_1_a	G6PD, zwf; glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363] 
+PPP	K18124	A_1_b	gdh2, gdhA; glucose/galactose 1-dehydrogenase (NADP+) [EC:1.1.1.360] 
+PPP	K18125	A_1_c	ssgdh; aldose 1-dehydrogenase [NAD(P)+] [EC:1.1.1.359] 
+PPP	K19243	A_1_d	azf; NAD+ dependent glucose-6-phosphate dehydrogenase [EC:1.1.1.388] 
+PPP	K01057	A_2_a	PGLS, pgl, devB; 6-phosphogluconolactonase [EC:3.1.1.31] 
+PPP	K07404	A_2_b	pgl; 6-phosphogluconolactonase [EC:3.1.1.31] 
+PPP	K13937	A_2_c	H6PD; hexose-6-phosphate dehydrogenase [EC:1.1.1.47 3.1.1.31] 
+PPP	K00033	A_3_a	PGD, gnd, gntZ; 6-phosphogluconate dehydrogenase [EC:1.1.1.44 1.1.1.343] 
+PPP	K01783	A_4_a	rpe, RPE; ribulose-phosphate 3-epimerase [EC:5.1.3.1] 
+PPP	K01807	A_4_b	rpiA; ribose 5-phosphate isomerase A [EC:5.3.1.6] 
+PPP	K01808	A_4_c	rpiB; ribose 5-phosphate isomerase B [EC:5.3.1.6] 
+PPP	K00615	A_5_a	E2.2.1.1, tktA, tktB; transketolase [EC:2.2.1.1] 
+PPP	K00850	A_6_a	pfkA, PFK; 6-phosphofructokinase 1 [EC:2.7.1.11] 
+PPP	K16370	A_6_b	pfkB; 6-phosphofructokinase 2 [EC:2.7.1.11] 
+PPP	K21071	A_6_c	pfk, pfp; ATP-dependent phosphofructokinase / diphosphate-dependent phosphofructokinase [EC:2.7.1.11 
+PPP	K24182	A_6_d	PFK9; 6-phosphofructokinase [EC:2.7.1.11] 
+PPP	K00895	A_6_e	pfp, PFP; diphosphate-dependent phosphofructokinase [EC:2.7.1.90] 
+PPP	K00918	A_6_f	pfkC; ADP-dependent phosphofructokinase/glucokinase [EC:2.7.1.146 2.7.1.147] 
+PPP	K01622	A_7_a	K01622; fructose 1,6-bisphosphate aldolase/phosphatase [EC:4.1.2.13 3.1.3.11] 
+PPP	K01623	A_7_b	ALDO; fructose-bisphosphate aldolase, class I [EC:4.1.2.13] 
+PPP	K01624	A_7_c	FBA, fbaA; fructose-bisphosphate aldolase, class II [EC:4.1.2.13] 
+PPP	K11645	A_7_d	fbaB; fructose-bisphosphate aldolase, class I [EC:4.1.2.13] 
+PPP	K16305	A_7_e	K16305; fructose-bisphosphate aldolase / 6-deoxy-5-ketofructose 1-phosphate synthase [EC:4.1.2.13 2. 
+PPP	K16306	A_7_f	K16306; fructose-bisphosphate aldolase / 2-amino-3,7-dideoxy-D-threo-hept-6-ulosonate synthase [EC:4 
+ED	K13937	A_2_c	H6PD; hexose-6-phosphate dehydrogenase [EC:1.1.1.47 3.1.1.31] 
+ED	K07404	A_2_b	pgl; 6-phosphogluconolactonase [EC:3.1.1.31] 
+ED	K01057	A_2_a	PGLS, pgl, devB; 6-phosphogluconolactonase [EC:3.1.1.31] 
+ED	K19243	A_1_d	azf; NAD+ dependent glucose-6-phosphate dehydrogenase [EC:1.1.1.388] 
+ED	K18125	A_1_c	ssgdh; aldose 1-dehydrogenase [NAD(P)+] [EC:1.1.1.359] 
+ED	K18124	A_1_b	gdh2, gdhA; glucose/galactose 1-dehydrogenase (NADP+) [EC:1.1.1.360] 
+ED	K00036	A_1_a	G6PD, zwf; glucose-6-phosphate 1-dehydrogenase [EC:1.1.1.49 1.1.1.363] 
+ED	K01690	A_3_a	edd; phosphogluconate dehydratase [EC:4.2.1.12] 
+ED	K11395	A_4_a	kdpgA; 2-dehydro-3-deoxy-phosphogluconate/2-dehydro-3-deoxy-6-phosphogalactonate aldolase [EC:4.1.2. 55]
+ED	K17463	A_4_b	dgaF; 2-dehydro-3-deoxy-phosphogluconate aldolase [EC:4.1.2.14] 
+Purine	K00764	A_1_a	purF, PPAT; amidophosphoribosyltransferase [EC:2.4.2.14] 
+Purine	K11176	A_10_a	purO; IMP cyclohydrolase [EC:3.5.4.10] 
+Purine	K01945	A_2_a	purD; phosphoribosylamine---glycine ligase [EC:6.3.4.13] 
+Purine	K13713	A_2_b:A_7_b	purCD; fusion protein PurCD [EC:6.3.2.6 6.3.4.13] 
+Purine	K11787	A_2_c:A_3_e:A_5_b	GART; phosphoribosylamine--glycine ligase / phosphoribosylglycinamide formyltransferase / phosphorib 
+Purine	K11788	A_2_d:A_5_c	ADE5; phosphoribosylamine--glycine ligase / phosphoribosylformylglycinamidine cyclo-ligase [EC:6.3.4 
+Purine	K00601	A_3_a	E2.1.2.2; phosphoribosylglycinamide formyltransferase [EC:2.1.2.2] 
+Purine	K11175	A_3_b	purN; phosphoribosylglycinamide formyltransferase 1 [EC:2.1.2.2] 
+Purine	K08289	A_3_c	purT; phosphoribosylglycinamide formyltransferase 2 [EC:6.3.1.21] 
+Purine	K01492	A_3_d:A_9_b	purNH; phosphoribosylglycinamide/phosphoribosylaminoimidazolecarboxamide formyltransferase [EC:2.1.2 
+Purine	K01952	A_4_a	PFAS, purL; phosphoribosylformylglycinamidine synthase [EC:6.3.5.3] 
+Purine	K23264	A_4_b	purS; phosphoribosylformylglycinamidine synthase subunit PurS [EC:6.3.5.3] 
+Purine	K23265	A_4_c	purQ; phosphoribosylformylglycinamidine synthase subunit PurQ / glutaminase [EC:6.3.5.3 3.5.1.2] 
+Purine	K23269	A_4_d	purL; phosphoribosylformylglycinamidine synthase subunit PurL [EC:6.3.5.3] 
+Purine	K23270	A_4_e	purSL; phosphoribosylformylglycinamidine synthase subunit PurSL [EC:6.3.5.3] 
+Purine	K01933	A_5_a	purM; phosphoribosylformylglycinamidine cyclo-ligase [EC:6.3.3.1] 
+Purine	K11808	A_6_a	ADE2; phosphoribosylaminoimidazole carboxylase [EC:4.1.1.21] 
+Purine	K01589	A_6_b_1-2	purK; 5-(carboxyamino)imidazole ribonucleotide synthase [EC:6.3.4.18] 
+Purine	K01588	A_6_b_2-2	purE; 5-(carboxyamino)imidazole ribonucleotide mutase [EC:5.4.99.18] 
+Purine	K01587	A_6_c:A_7_c	PAICS; phosphoribosylaminoimidazole carboxylase / phosphoribosylaminoimidazole-succinocarboxamide sy 
+Purine	K01923	A_7_a	purC; phosphoribosylaminoimidazole-succinocarboxamide synthase [EC:6.3.2.6] 
+Purine	K01756	A_8_a	purB, ADSL; adenylosuccinate lyase [EC:4.3.2.2] 
+Purine	K06863	A_9_c	purP; 5-formaminoimidazole-4-carboxamide-1-(beta)-D-ribofuranosyl 5'-monophosphate synthetase [EC:6. 
+Purine	K00602	A_9_a:A_10_b	purH; phosphoribosylaminoimidazolecarboxamide formyltransferase / IMP cyclohydrolase [EC:2.1.2.3 3.5 
+Pyrimidine	K01954	A_1_a	K01954; carbamoyl-phosphate synthase [EC:6.3.5.5] 
+Pyrimidine	K01955	A_1_b_1-2	carB, CPA2; carbamoyl-phosphate synthase large subunit [EC:6.3.5.5] 
+Pyrimidine	K01956	A_1_b_2-2	carA, CPA1; carbamoyl-phosphate synthase small subunit [EC:6.3.5.5] 
+Pyrimidine	K11540	A_1_c:A_2_d	CAD; carbamoyl-phosphate synthase / aspartate carbamoyltransferase / dihydroorotase [EC:6.3.5.5 2.1. 
+Pyrimidine	K11541	A_1_d:A_2_a:A_3_b	URA2; carbamoyl-phosphate synthase / aspartate carbamoyltransferase [EC:6.3.5.5 2.1.3.2] 
+Pyrimidine	K00608	A_2_b	pyrBI; aspartate carbamoyltransferase [EC:2.1.3.2] 
+Pyrimidine	K00609	A_2_c	pyrB, PYR2; aspartate carbamoyltransferase catalytic subunit [EC:2.1.3.2] 
+Pyrimidine	K01465	A_3_a	URA4, pyrC; dihydroorotase [EC:3.5.2.3] 
+Pyrimidine	K17828	A_4_a	pyrDI; dihydroorotate dehydrogenase (NAD+) catalytic subunit [EC:1.3.1.14] 
+Pyrimidine	K00226	A_4_b	pyrD; dihydroorotate dehydrogenase (fumarate) [EC:1.3.98.1] 
+Pyrimidine	K00254	A_4_c	DHODH, pyrD; dihydroorotate dehydrogenase [EC:1.3.5.2] 
+Pyrimidine	K02823	A_4_d	pyrDII; dihydroorotate dehydrogenase electron transfer subunit 
+Pyrimidine	K00762	A_5_a	pyrE; orotate phosphoribosyltransferase [EC:2.4.2.10] 
+Pyrimidine	K13421	A_5_b:A_6_a	UMPS; uridine monophosphate synthetase [EC:2.4.2.10 4.1.1.23] 
+Pyrimidine	K01591	A_6_b	pyrF; orotidine-5'-phosphate decarboxylase [EC:4.1.1.23] 
+Thiamine	K03147	A_1_a	thiC; phosphomethylpyrimidine synthase [EC:4.1.99.17] 
+Thiamine	K18278	A_1_b	THI5; pyrimidine precursor biosynthesis enzyme 
+Thiamine	K00877	A_2_a	THI20; hydroxymethylpyrimidine/phosphomethylpyrimidine kinase / thiaminase [EC:2.7.1.49 2.7.4.7 3.5. 
+Thiamine	K00941	A_2_b	thiD; hydroxymethylpyrimidine/phosphomethylpyrimidine kinase [EC:2.7.1.49 2.7.4.7] 
+Thiamine	K14153	A_2_c:A_4_d	thiDE; hydroxymethylpyrimidine kinase / phosphomethylpyrimidine kinase / thiamine-phosphate diphosph 
+Thiamine	K21219	A_2_d:A_4_e	thiDN; hydroxymethylpyrimidine kinase / phosphomethylpyrimidine kinase / thiamine-phosphate diphosph 
+Thiamine	K03146	A_3_a	THI4, THI1; cysteine-dependent adenosine diphosphate thiazole synthase [EC:2.4.2.60] 
+Thiamine	K22699	A_3_b	thi4; sulfide-dependent adenosine diphosphate thiazole synthase [EC:2.4.2.59] 
+Thiamine	K01662	A_3_c_1-3	dxs; 1-deoxy-D-xylulose-5-phosphate synthase [EC:2.2.1.7] 
+Thiamine	K03149	A_3_c_2-3	thiG; thiazole synthase [EC:2.8.1.10] 
+Thiamine	K10810	A_3_c_3-3	tenI; thiazole tautomerase (transcriptional regulator TenI) [EC:5.3.99.10] 
+Thiamine	K14154	A_4_a	THI6; thiamine-phosphate diphosphorylase / hydroxyethylthiazole kinase [EC:2.5.1.3 2.7.1.50] 
+Thiamine	K21220	A_4_b	thiN; thiamine-phosphate diphosphorylase [EC:2.5.1.3] 
+Thiamine	K00788	A_4_c	thiE; thiamine-phosphate pyrophosphorylase [EC:2.5.1.3] 
+Thiamine	K22911	A_5_a	TH2; thiamine phosphate phosphatase / amino-HMP aminohydrolase [EC:3.1.3.100 3.5.99.-] 
+Thiamine	K01077	A_5_b	E3.1.3.1, phoA, phoB; alkaline phosphatase [EC:3.1.3.1] 
+Thiamine	K06949	A_5_c	rsgA, engC; ribosome biogenesis GTPase / thiamine phosphate phosphatase [EC:3.6.1.- 3.1.3.100] 
+Thiamine	K01078	A_5_d	PHO; acid phosphatase [EC:3.1.3.2] 
+Thiamine	K14394	A_5_e	ACP1; low molecular weight phosphotyrosine protein phosphatase [EC:3.1.3.2 3.1.3.48] 
+Thiamine	K23458	A_5_f	PHO5_11_12; repressible acid phosphatase [EC:3.1.3.2] 
+Riboflavin	K01497	A_1_a	ribA, RIB1; GTP cyclohydrolase II [EC:3.5.4.25] 
+Riboflavin	K14652	A_1_b:A_4_b	ribBA; 3,4-dihydroxy 2-butanone 4-phosphate synthase / GTP cyclohydrolase II [EC:4.1.99.12 3.5.4.25] 
+Riboflavin	K08096	A_1_c_1-2	gch3; GTP cyclohydrolase IIa [EC:3.5.4.29] 
+Riboflavin	K14653	A_1_c_2-2	arfB; 2-amino-5-formylamino-6-ribosylaminopyrimidin-4(3H)-one 5'-monophosphate deformylase [EC:3.5.1 
+Riboflavin	K01498	A_2_a_1-2	ribD1; diaminohydroxyphosphoribosylaminopyrimidine deaminase [EC:3.5.4.26] 
+Riboflavin	K00082	A_2_a_2-2	ribD2; 5-amino-6-(5-phosphoribosylamino)uracil reductase [EC:1.1.1.193] 
+Riboflavin	K11752	A_2_b	ribD; diaminohydroxyphosphoribosylaminopyrimidine deaminase / 5-amino-6-(5-phosphoribosylamino)uraci 
+Riboflavin	K14654	A_2_c_1-2	RIB7, arfC; 2,5-diamino-6-(ribosylamino)-4(3H)-pyrimidinone 5'-phosphate reductase [EC:1.1.1.302] 
+Riboflavin	K14655	A_2_c_2-2	RIB2, PUS8; tRNA pseudouridine32 synthase / 2,5-diamino-6-(5-phospho-D-ribitylamino)-pyrimidin-4(3H) 
+Riboflavin	K20860	A_3_a	FHY1; FMN hydrolase / 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase [EC:3.1.3.102 3.1.3.104 
+Riboflavin	K20861	A_3_b	ybjI; FMN hydrolase / 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase [EC:3.1.3.102 3.1.3.104 
+Riboflavin	K20862	A_3_c	yigB; FMN hydrolase / 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase [EC:3.1.3.102 3.1.3.104 
+Riboflavin	K21063	A_3_d	K21063; 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase [EC:3.1.3.104] 
+Riboflavin	K21064	A_3_e	ycsE, yitU, ywtE; 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase [EC:3.1.3.104] 
+Riboflavin	K22912	A_3_f	PYRP2; 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase [EC:3.1.3.104] 
+Riboflavin	K02858	A_4_a	ribB, RIB3; 3,4-dihydroxy 2-butanone 4-phosphate synthase [EC:4.1.99.12] 
+Riboflavin	K00794	A_5_a	ribH, RIB4; 6,7-dimethyl-8-ribityllumazine synthase [EC:2.5.1.78] 
+Riboflavin	K00793	A_6_a	ribE, RIB5; riboflavin synthase [EC:2.5.1.9] 
+Vitamin B6	K03472	A_1_a	epd; D-erythrose 4-phosphate dehydrogenase [EC:1.2.1.72] 
+Vitamin B6	K03473	A_2_a	pdxB; erythronate-4-phosphate dehydrogenase [EC:1.1.1.290] 
+Vitamin B6	K00831	A_3_a	serC, PSAT1; phosphoserine aminotransferase [EC:2.6.1.52] 
+Vitamin B6	K00097	A_4_a	pdxA; 4-hydroxythreonine-4-phosphate dehydrogenase [EC:1.1.1.262] 
+Vitamin B6	K03474	A_5_a	pdxJ; pyridoxine 5-phosphate synthase [EC:2.6.99.2] 
+Vitamin B6	K00275	A_6_a	pdxH, PNPO; pyridoxamine 5'-phosphate oxidase [EC:1.4.3.5] 
+Vitamin B6	K06215	B_1_a	pdxS, pdx1; pyridoxal 5'-phosphate synthase pdxS subunit [EC:4.3.3.6] 
+Vitamin B6	K08681	B_2_a	pdxT, pdx2; pyridoxal 5'-phosphate synthase pdxT subunit [EC:4.3.3.6] 
+NAD	K00278	A_1_a	nadB; L-aspartate oxidase [EC:1.4.3.16] 
+NAD	K06989	A_1_b:B_6_a	nadX, ASPDH; aspartate dehydrogenase [EC:1.4.1.21] 
+NAD	K03517	A_2_a	nadA; quinolinate synthase [EC:2.5.1.72] 
+NAD	K00767	A_3_a	nadC, QPRT; nicotinate-nucleotide pyrophosphorylase (carboxylating) [EC:2.4.2.19] 
+NAD	K00952	A_4_a:B_8_a	nadM; nicotinamide-nucleotide adenylyltransferase [EC:2.7.7.1] 
+NAD	K00969	A_4_b:B_8_b	nadD; nicotinate-nucleotide adenylyltransferase [EC:2.7.7.18] 
+NAD	K06210	A_4_c:B_8_c	NMNAT; nicotinamide mononucleotide adenylyltransferase [EC:2.7.7.1 2.7.7.18] 
+NAD	K13522	A_4_d:B_8_d	K13522, nadM; bifunctional NMN adenylyltransferase/nudix hydrolase [EC:2.7.7.1 3.6.1.-] 
+NAD	K19785	A_4_e:B_8_e	POF1; nicotinamide-nucleotide adenylyltransferase [EC:2.7.7.1] 
+NAD	K01916	A_5_a:B_7_a	nadE; NAD+ synthase [EC:6.3.1.5] 
+NAD	K01950	A_5_b:B_7_b	E6.3.5.1, NADSYN1, QNS1, nadE; NAD+ synthase (glutamine-hydrolysing) [EC:6.3.5.1] 
+NAD	K00453	B_1_a	TDO2, kynA; tryptophan 2,3-dioxygenase [EC:1.13.11.11] 
+NAD	K00463	B_1_b	IDO, INDO; indoleamine 2,3-dioxygenase [EC:1.13.11.52] 
+NAD	K01432	B_2_a	AFMID; arylformamidase [EC:3.5.1.9] 
+NAD	K07130	B_2_b	kynB; arylformamidase [EC:3.5.1.9] 
+NAD	K14263	B_2_c	BNA7; kynurenine formamidase [EC:3.5.1.9] 
+NAD	K01556	B_3_a	KYNU, kynU; kynureninase [EC:3.7.1.3] 
+NAD	K16901	B_4_a	K16901; anthranilate 3-monooxygenase (FAD) / 4-hydroxyphenylacetate 3-monooxygenase [EC:1.14.14.8 1. 
+NAD	K00486	B_4_b	KMO; kynurenine 3-monooxygenase [EC:1.14.13.9] 
+NAD	K00452	B_5_a	HAAO; 3-hydroxyanthranilate 3,4-dioxygenase [EC:1.13.11.6] 
+Coenzyme A	K00826	A_1_a	E2.6.1.42, ilvE; branched-chain amino acid aminotransferase [EC:2.6.1.42] 
+Coenzyme A	K00606	A_2_a	panB; 3-methyl-2-oxobutanoate hydroxymethyltransferase [EC:2.1.2.11] 
+Coenzyme A	K00077	A_3_a	panE, apbA; 2-dehydropantoate 2-reductase [EC:1.1.1.169] 
+Coenzyme A	K24263	A_3_b	panG; 2-dehydropantoate 2-reductase [EC:1.1.1.169] 
+Coenzyme A	K01918	A_4_a	panC; pantoate--beta-alanine ligase [EC:6.3.2.1] 
+Coenzyme A	K13799	A_4_b	panC-cmk; pantoate ligase / CMP/dCMP kinase [EC:6.3.2.1 2.7.4.25] 
+Coenzyme A	K06982	A_4_c	pok; pantoate kinase [EC:2.7.1.169] 
+Coenzyme A	K09680	A_5_a:A_7_c	PANK1_2_3, CAB1, coaW; type II pantothenate kinase [EC:2.7.1.33] 
+Coenzyme A	K00867	A_5_b:A_7_d	coaA; type I pantothenate kinase [EC:2.7.1.33] 
+Coenzyme A	K03525	A_5_c:A_7_e	coaX; type III pantothenate kinase [EC:2.7.1.33] 
+Coenzyme A	K09735	A_5_d:A_9_c	dpck; GTP-dependent dephospho-CoA kinase [EC:2.7.1.-] 
+Coenzyme A	K09722	A_5_e	K09722, pps; 4-phosphopantoate---beta-alanine ligase [EC:6.3.2.36] 
+Coenzyme A	K21977	A_6_a	coaB; phosphopantothenate---cysteine ligase (CTP) [EC:6.3.2.5] 
+Coenzyme A	K01922	A_6_b	PPCS, COAB; phosphopantothenate---cysteine ligase (ATP) [EC:6.3.2.51] 
+Coenzyme A	K13038	A_6_c:A_7_b	coaBC, dfp; phosphopantothenoylcysteine decarboxylase / phosphopantothenate---cysteine ligase [EC:4. 
+Coenzyme A	K01598	A_7_a	PPCDC, coaC; phosphopantothenoylcysteine decarboxylase [EC:4.1.1.36] 
+Coenzyme A	K01947	A_7_b	birA-coaX; biotin---[acetyl-CoA-carboxylase] ligase / type III pantothenate kinase [EC:6.3.4.15 2.7. 
+Coenzyme A	K00954	A_8_a	E2.7.7.3A, coaD, kdtB; pantetheine-phosphate adenylyltransferase [EC:2.7.7.3] 
+Coenzyme A	K02201	A_8_b	E2.7.7.3B; pantetheine-phosphate adenylyltransferase [EC:2.7.7.3] 
+Coenzyme A	K02318	A_8_c:A_9_b	COASY; phosphopantetheine adenylyltransferase / dephospho-CoA kinase [EC:2.7.7.3 2.7.1.24] 
+Coenzyme A	K01513	A_8_d	ENPP1_3, CD203; ectonucleotide pyrophosphatase/phosphodiesterase family member 1/3 [EC:3.1.4.1 3.6.1 
+Coenzyme A	K04765	A_8_e	mazG; nucleoside triphosphate diphosphatase [EC:3.6.1.9] 
+Coenzyme A	K00859	A_9_a	coaE; dephospho-CoA kinase [EC:2.7.1.24] 
+Biotin	K01906	A_1_a:B_1_a	bioW; 6-carboxyhexanoate--CoA ligase [EC:6.2.1.14] 
+Biotin	K00652	A_2_a:B_2_a:C_7_a	bioF; 8-amino-7-oxononanoate synthase [EC:2.3.1.47] 
+Biotin	K00833	A_3_a:B_3_a:C_8_a	bioA; adenosylmethionine---8-amino-7-oxononanoate aminotransferase [EC:2.6.1.62] 
+Biotin	K19562	A_3_b:B_3_b:C_8_b	BIO3-BIO1; bifunctional dethiobiotin synthetase / adenosylmethionine---8-amino-7-oxononanoate aminot 
+Biotin	K19563	A_3_c:B_3_c:C_8_c	bioA, bioK; lysine---8-amino-7-oxononanoate aminotransferase [EC:2.6.1.105] 
+Biotin	K01935	A_4_a:B_4_a:C_9_a	bioD; dethiobiotin synthetase [EC:6.3.3.3] 
+Biotin	K01012	A_5_a:B_5_a:C_10_a	bioB; biotin synthase [EC:2.8.1.6] 
+Biotin	K02169	C_1_a	bioC; malonyl-CoA O-methyltransferase [EC:2.1.1.197] 
+Biotin	K00647	C_2_a	fabB; 3-oxoacyl-[acyl-carrier-protein] synthase I [EC:2.3.1.41] 
+Biotin	K09458	C_2_b	fabF, OXSM, CEM1; 3-oxoacyl-[acyl-carrier-protein] synthase II [EC:2.3.1.179] 
+Biotin	K00059	C_3_a	fabG, OAR1; 3-oxoacyl-[acyl-carrier protein] reductase [EC:1.1.1.100] 
+Biotin	K02372	C_4_a	fabZ; 3-hydroxyacyl-[acyl-carrier-protein] dehydratase [EC:4.2.1.59] 
+Biotin	K00208	C_5_a	fabI; enoyl-[acyl-carrier protein] reductase I [EC:1.3.1.9 1.3.1.10] 
+Biotin	K02170	C_6_a	bioH; pimeloyl-[acyl-carrier protein] methyl ester esterase [EC:3.1.1.85] 
+Biotin	K09789	C_6_b	bioG; pimeloyl-[acyl-carrier protein] methyl ester esterase [EC:3.1.1.85] 
+Biotin	K19560	C_6_c	bioK; pimeloyl-[acyl-carrier protein] methyl ester esterase [EC:3.1.1.85] 
+Biotin	K19561	C_6_d	bioJ; pimeloyl-[acyl-carrier protein] methyl ester esterase [EC:3.1.1.85] 
+Folate	K17488	A_1_a	mptA; GTP cyclohydrolase IV [EC:3.5.4.39] 
+Folate	K17487	A_2_a	mptB; 7,8-dihydroneopterin 2',3'-cyclic phosphate phosphodiesterase [EC:3.1.4.56] 
+Folate	K22102	A_3_a	E4.1.2.59; dihydroneopterin phosphate aldolase [EC:4.1.2.59] 
+Folate	K09739	A_3_b	mptD; dihydroneopterin aldolase [EC:4.1.2.25] 
+Folate	K01633	A_3_e	folB; 7,8-dihydroneopterin aldolase/epimerase/oxygenase [EC:4.1.2.25 5.1.99.8 1.13.11.81] 
+Folate	K13939	A_4_a:A_3_c	FOL1; dihydroneopterin aldolase / 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase  
+Folate	K13940	A_4_b:A_3_d	sulD; dihydroneopterin aldolase / 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase  
+Folate	K13941	A_4_c	folKP; 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase / dihydropteroate synthase  
+Folate	K13950	A_4_d:B_1_a	pabAB; para-aminobenzoate synthetase [EC:2.6.1.85] 
+Folate	K07142	A_4_e	mptE; 2-amino-4-hydroxy-6-hydroxymethyldihydropteridine diphosphokinase [EC:2.7.6.3] 
+Folate	K00796	A_5_a:B_3_a	folP; dihydropteroate synthase [EC:2.5.1.15] 
+Folate	K18824	A_5_b:B_3_b	sul2; dihydropteroate synthase type 2 [EC:2.5.1.15] 
+Folate	K18825	A_5_c:B_3_c	sul3; dihydropteroate synthase type 3 [EC:2.5.1.15] 
+Folate	K18974	A_5_d:B_3_d	sul1; dihydropteroate synthase type 1 [EC:2.5.1.15] 
+Folate	K24102	A_5_e:A_6_d:B_3_e:B_4_d	folCP; dihydrofolate synthase / dihydropteroate synthase [EC:6.3.2.12 2.5.1.15] 
+Folate	K11754	A_6_a:B_4_a	folC; dihydrofolate synthase / folylpolyglutamate synthase [EC:6.3.2.12 6.3.2.17] 
+Folate	K20457	A_6_b:B_4_b	DHFS; dihydrofolate synthase [EC:6.3.2.12] 
+Folate	K22099	A_6_c:B_4_c	folC2; dihydrofolate synthase / folylpolyglutamate synthase [EC:6.3.2.12 6.3.2.17] 
+Folate	K01930	A_6_e	FPGS; folylpolyglutamate synthase [EC:6.3.2.17] 
+Folate	K13938	A_7_a:B_7_a	folM; dihydromonapterin reductase / dihydrofolate reductase [EC:1.5.1.50 1.5.1.3] 
+Folate	K19645	A_7_b:B_7_b	dfrB, dfr2; dihydrofolate reductase (trimethoprim resistance protein) [EC:1.5.1.3] 
+Folate	K13998	A_7_c:B_7_c	DHFR-TS; dihydrofolate reductase / thymidylate synthase [EC:1.5.1.3 2.1.1.45] 
+Folate	K18589	A_7_d:B_7_d	dfrA1, dhfr; dihydrofolate reductase (trimethoprim resistance protein) [EC:1.5.1.3] 
+Folate	K18590	A_7_e:B_7_e	dfrA12, dhfr; dihydrofolate reductase (trimethoprim resistance protein) [EC:1.5.1.3] 
+Folate	K18591	A_7_f:B_7_f	dfrD, dhfr; dihydrofolate reductase (trimethoprim resistance protein) [EC:1.5.1.3] 
+Folate	K19643	A_7_g:B_7_g	dfrA10, dfr10; dihydrofolate reductase (trimethoprim resistance protein) [EC:1.5.1.3] 
+Folate	K19644	A_7_h:B_7_h	dfrA19, dfrA18; dihydrofolate reductase (trimethoprim resistance protein) [EC:1.5.1.3] 
+Folate	K00287	A_7_i	DHFR, folA; dihydrofolate reductase [EC:1.5.1.3] 
+Folate	K01664	B_1_b_1-2	pabA; para-aminobenzoate synthetase component II [EC:2.6.1.85] 
+Folate	K01665	B_1_b_2-2	pabB; para-aminobenzoate synthetase component I [EC:2.6.1.85] 
+Folate	K03342	B_1_c	pabBC; para-aminobenzoate synthetase / 4-amino-4-deoxychorismate lyase [EC:2.6.1.85 4.1.3.38] 
+Folate	K02619	B_2_a	pabC; 4-amino-4-deoxychorismate lyase [EC:4.1.3.38] 
+Folate	K18482	B_2_b	ADCL; 4-amino-4-deoxychorismate lyase [EC:4.1.3.38] 
+Oxidative Phosphorylation	K00330	A_1_a_1-14	nuoA; NADH-quinone oxidoreductase subunit A [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00339	A_1_a_10-14	nuoJ; NADH-quinone oxidoreductase subunit J [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00340	A_1_a_11-14	nuoK; NADH-quinone oxidoreductase subunit K [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00341	A_1_a_12-14	nuoL; NADH-quinone oxidoreductase subunit L [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00342	A_1_a_13-14	nuoM; NADH-quinone oxidoreductase subunit M [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00343	A_1_a_14-14	nuoN; NADH-quinone oxidoreductase subunit N [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00331	A_1_a_2-14	nuoB; NADH-quinone oxidoreductase subunit B [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00332	A_1_a_3-14	nuoC; NADH-quinone oxidoreductase subunit C [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00333	A_1_a_4-14	nuoD; NADH-quinone oxidoreductase subunit D [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00334	A_1_a_5-14	nuoE; NADH-quinone oxidoreductase subunit E [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00335	A_1_a_6-14	nuoF; NADH-quinone oxidoreductase subunit F [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00336	A_1_a_7-14	nuoG; NADH-quinone oxidoreductase subunit G [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00337	A_1_a_8-14	nuoH; NADH-quinone oxidoreductase subunit H [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00338	A_1_a_9-14	nuoI; NADH-quinone oxidoreductase subunit I [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03878	A_1_b_1-7	ND1; NADH-ubiquinone oxidoreductase chain 1 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03879	A_1_b_2-7	ND2; NADH-ubiquinone oxidoreductase chain 2 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03880	A_1_b_3-7	ND3; NADH-ubiquinone oxidoreductase chain 3 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03881	A_1_b_4-7	ND4; NADH-ubiquinone oxidoreductase chain 4 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03882	A_1_b_5-7	ND4L; NADH-ubiquinone oxidoreductase chain 4L [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03883	A_1_b_6-7	ND5; NADH-ubiquinone oxidoreductase chain 5 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03884	A_1_b_7-7	ND6; NADH-ubiquinone oxidoreductase chain 6 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03885	A_1_c	ndh; NADH:ubiquinone reductase (H+-translocating) [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03934	A_1_d_1-11	NDUFS1; NADH dehydrogenase (ubiquinone) Fe-S protein 1 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03943	A_1_d_10-11	NDUFV2; NADH dehydrogenase (ubiquinone) flavoprotein 2 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03944	A_1_d_11-11	NDUFV3; NADH dehydrogenase (ubiquinone) flavoprotein 3 
+Oxidative Phosphorylation	K03935	A_1_d_2-11	NDUFS2; NADH dehydrogenase (ubiquinone) Fe-S protein 2 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03936	A_1_d_3-11	NDUFS3; NADH dehydrogenase (ubiquinone) Fe-S protein 3 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03937	A_1_d_4-11	NDUFS4; NADH dehydrogenase (ubiquinone) Fe-S protein 4 
+Oxidative Phosphorylation	K03938	A_1_d_5-11	NDUFS5; NADH dehydrogenase (ubiquinone) Fe-S protein 5 
+Oxidative Phosphorylation	K03939	A_1_d_6-11	NDUFS6; NADH dehydrogenase (ubiquinone) Fe-S protein 6 
+Oxidative Phosphorylation	K03940	A_1_d_7-11	NDUFS7; NADH dehydrogenase (ubiquinone) Fe-S protein 7 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03941	A_1_d_8-11	NDUFS8; NADH dehydrogenase (ubiquinone) Fe-S protein 8 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03942	A_1_d_9-11	NDUFV1; NADH dehydrogenase (ubiquinone) flavoprotein 1 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K03945	A_1_e_1-14	NDUFA1; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 1 
+Oxidative Phosphorylation	K03954	A_1_e_10-14	NDUFA10; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 10 
+Oxidative Phosphorylation	K03955	A_1_e_11-14	NDUFAB1; NADH dehydrogenase (ubiquinone) 1 alpha/beta subcomplex 1, acyl-carrier protein 
+Oxidative Phosphorylation	K03956	A_1_e_12-14	NDUFA11; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 11 
+Oxidative Phosphorylation	K11352	A_1_e_13-14	NDUFA12; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 12 
+Oxidative Phosphorylation	K11353	A_1_e_14-14	NDUFA13; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 13 
+Oxidative Phosphorylation	K03946	A_1_e_2-14	NDUFA2; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 2 
+Oxidative Phosphorylation	K03947	A_1_e_3-14	NDUFA3; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 3 
+Oxidative Phosphorylation	K03948	A_1_e_4-14	NDUFA4; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 4 
+Oxidative Phosphorylation	K03949	A_1_e_5-14	NDUFA5; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 5 
+Oxidative Phosphorylation	K03950	A_1_e_6-14	NDUFA6; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 6 
+Oxidative Phosphorylation	K03951	A_1_e_7-14	NDUFA7; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 7 
+Oxidative Phosphorylation	K03952	A_1_e_8-14	NDUFA8; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 8 
+Oxidative Phosphorylation	K03953	A_1_e_9-14	NDUFA9; NADH dehydrogenase (ubiquinone) 1 alpha subcomplex subunit 9 
+Oxidative Phosphorylation	K03957	A_1_f_1-13	NDUFB1; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 1 
+Oxidative Phosphorylation	K03966	A_1_f_10-13	NDUFB10; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 10 
+Oxidative Phosphorylation	K11351	A_1_f_11-13	NDUFB11; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 11 
+Oxidative Phosphorylation	K03967	A_1_f_12-13	NDUFC1; NADH dehydrogenase (ubiquinone) 1 subunit C1 
+Oxidative Phosphorylation	K03968	A_1_f_13-13	NDUFC2; NADH dehydrogenase (ubiquinone) 1 subunit C2 
+Oxidative Phosphorylation	K03958	A_1_f_2-13	NDUFB2; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 2 
+Oxidative Phosphorylation	K03959	A_1_f_3-13	NDUFB3; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 3 
+Oxidative Phosphorylation	K03960	A_1_f_4-13	NDUFB4; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 4 
+Oxidative Phosphorylation	K03961	A_1_f_5-13	NDUFB5; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 5 
+Oxidative Phosphorylation	K03962	A_1_f_6-13	NDUFB6; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 6 
+Oxidative Phosphorylation	K03963	A_1_f_7-13	NDUFB7; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 7 
+Oxidative Phosphorylation	K03964	A_1_f_8-13	NDUFB8; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 8 
+Oxidative Phosphorylation	K03965	A_1_f_9-13	NDUFB9; NADH dehydrogenase (ubiquinone) 1 beta subcomplex subunit 9 
+Oxidative Phosphorylation	K05572	A_1_g_1-17	ndhA; NAD(P)H-quinone oxidoreductase subunit 1 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05581	A_1_g_10-17	ndhJ; NAD(P)H-quinone oxidoreductase subunit J [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05582	A_1_g_11-17	ndhK; NAD(P)H-quinone oxidoreductase subunit K [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05583	A_1_g_12-17	ndhL; NAD(P)H-quinone oxidoreductase subunit L [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05584	A_1_g_13-17	ndhM; NAD(P)H-quinone oxidoreductase subunit M [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05585	A_1_g_14-17	ndhN; NAD(P)H-quinone oxidoreductase subunit N [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05586	A_1_g_15-17	hoxE; bidirectional [NiFe] hydrogenase diaphorase subunit [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05587	A_1_g_16-17	hoxF; bidirectional [NiFe] hydrogenase diaphorase subunit [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05588	A_1_g_17-17	hoxU; bidirectional [NiFe] hydrogenase diaphorase subunit [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05573	A_1_g_2-17	ndhB; NAD(P)H-quinone oxidoreductase subunit 2 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05574	A_1_g_3-17	ndhC; NAD(P)H-quinone oxidoreductase subunit 3 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05575	A_1_g_4-17	ndhD; NAD(P)H-quinone oxidoreductase subunit 4 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05576	A_1_g_5-17	ndhE; NAD(P)H-quinone oxidoreductase subunit 4L [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05577	A_1_g_6-17	ndhF; NAD(P)H-quinone oxidoreductase subunit 5 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05578	A_1_g_7-17	ndhG; NAD(P)H-quinone oxidoreductase subunit 6 [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05579	A_1_g_8-17	ndhH; NAD(P)H-quinone oxidoreductase subunit H [EC:7.1.1.2] 
+Oxidative Phosphorylation	K05580	A_1_g_9-17	ndhI; NAD(P)H-quinone oxidoreductase subunit I [EC:7.1.1.2] 
+Oxidative Phosphorylation	K00234	A_2_a_1-4	SDHA, SDH1; succinate dehydrogenase (ubiquinone) flavoprotein subunit [EC:1.3.5.1] 
+Oxidative Phosphorylation	K00235	A_2_a_2-4	SDHB, SDH2; succinate dehydrogenase (ubiquinone) iron-sulfur subunit [EC:1.3.5.1] 
+Oxidative Phosphorylation	K00236	A_2_a_3-4	SDHC, SDH3; succinate dehydrogenase (ubiquinone) cytochrome b560 subunit 
+Oxidative Phosphorylation	K00237	A_2_a_4-4	SDHD, SDH4; succinate dehydrogenase (ubiquinone) membrane anchor subunit 
+Oxidative Phosphorylation	K00239	A_2_b_1-4	sdhA, frdA; succinate dehydrogenase / fumarate reductase, flavoprotein subunit [EC:1.3.5.1 1.3.5.4] 
+Oxidative Phosphorylation	K00240	A_2_b_2-4	sdhB, frdB; succinate dehydrogenase / fumarate reductase, iron-sulfur subunit [EC:1.3.5.1 1.3.5.4] 
+Oxidative Phosphorylation	K00241	A_2_b_3-4	sdhC, frdC; succinate dehydrogenase / fumarate reductase, cytochrome b subunit 
+Oxidative Phosphorylation	K00242	A_2_b_4-4	sdhD, frdD; succinate dehydrogenase / fumarate reductase, membrane anchor subunit 
+Oxidative Phosphorylation	K02257	A_3_a_1-5	COX10, ctaB, cyoE; heme o synthase [EC:2.5.1.141] 
+Oxidative Phosphorylation	K02300	A_3_a_2-5	cyoD; cytochrome o ubiquinol oxidase subunit IV 
+Oxidative Phosphorylation	K02299	A_3_a_3-5	cyoC; cytochrome o ubiquinol oxidase subunit III 
+Oxidative Phosphorylation	K02298	A_3_a_4-5	cyoB; cytochrome o ubiquinol oxidase subunit I [EC:7.1.1.3] 
+Oxidative Phosphorylation	K02297	A_3_a_5-5	cyoA; cytochrome o ubiquinol oxidase subunit II [EC:7.1.1.3] 
+Oxidative Phosphorylation	K00404	A_3_b_1-4	ccoN; cytochrome c oxidase cbb3-type subunit I [EC:7.1.1.9] 
+Oxidative Phosphorylation	K00405	A_3_b_2-4	ccoO; cytochrome c oxidase cbb3-type subunit II 
+Oxidative Phosphorylation	K00407	A_3_b_3-4	ccoQ; cytochrome c oxidase cbb3-type subunit IV 
+Oxidative Phosphorylation	K00406	A_3_b_4-4	ccoP; cytochrome c oxidase cbb3-type subunit III 
+Oxidative Phosphorylation	K00411	A_4_a_1-3:A_4_d_1-3	UQCRFS1, RIP1, petA; ubiquinol-cytochrome c reductase iron-sulfur subunit [EC:7.1.1.8] 
+Oxidative Phosphorylation	K00410	A_4_a_2-3	fbcH; ubiquinol-cytochrome c reductase cytochrome b/c1 subunit 
+Oxidative Phosphorylation	K00413	A_4_a_3-3:A_4_d_3-3	CYC1, CYT1, petC; ubiquinol-cytochrome c reductase cytochrome c1 subunit 
+Oxidative Phosphorylation	K03886	A_4_b_1-3	MQCRA, qcrA, bfcA, petC; menaquinol-cytochrome c reductase iron-sulfur subunit [EC:1.10.2.-] 
+Oxidative Phosphorylation	K03887	A_4_b_2-3	MQCRB, qcrB, bfcB, petB; menaquinol-cytochrome c reductase cytochrome b subunit 
+Oxidative Phosphorylation	K03888	A_4_b_3-3	MQCRC, qcrC, bfcC, petD; menaquinol-cytochrome c reductase cytochrome b/c subunit 
+Oxidative Phosphorylation	K03890	A_4_c_1-3	qcrA; ubiquinol-cytochrome c reductase iron-sulfur subunit 
+Oxidative Phosphorylation	K03891	A_4_c_2-3	qcrB; ubiquinol-cytochrome c reductase cytochrome b subunit 
+Oxidative Phosphorylation	K03889	A_4_c_3-3	qcrC; ubiquinol-cytochrome c reductase cytochrome c subunit 
+Oxidative Phosphorylation	K00412	A_4_d_2-3	CYTB, petB; ubiquinol-cytochrome c reductase cytochrome b subunit 
+Oxidative Phosphorylation	K00425	A_5_a_1-2	cydA; cytochrome bd ubiquinol oxidase subunit I [EC:7.1.1.7] 
+Oxidative Phosphorylation	K00426	A_5_a_2-2	cydB; cytochrome bd ubiquinol oxidase subunit II [EC:7.1.1.7] 
+Oxidative Phosphorylation	K02111	A_6_a_1-8	ATPF1A, atpA; F-type H+/Na+-transporting ATPase subunit alpha [EC:7.1.2.2 7.2.2.1] 
+Oxidative Phosphorylation	K02112	A_6_a_2-8	ATPF1B, atpD; F-type H+/Na+-transporting ATPase subunit beta [EC:7.1.2.2 7.2.2.1] 
+Oxidative Phosphorylation	K02115	A_6_a_3-8	ATPF1G, atpG; F-type H+-transporting ATPase subunit gamma 
+Oxidative Phosphorylation	K02113	A_6_a_4-8	ATPF1D, atpH; F-type H+-transporting ATPase subunit delta 
+Oxidative Phosphorylation	K02114	A_6_a_5-8	ATPF1E, atpC; F-type H+-transporting ATPase subunit epsilon 
+Oxidative Phosphorylation	K02108	A_6_a_6-8	ATPF0A, atpB; F-type H+-transporting ATPase subunit a 
+Oxidative Phosphorylation	K02109	A_6_a_7-8	ATPF0B, atpF; F-type H+-transporting ATPase subunit b 
+Oxidative Phosphorylation	K02110	A_6_a_8-8	ATPF0C, atpE; F-type H+-transporting ATPase subunit c 

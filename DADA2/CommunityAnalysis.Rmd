@@ -1,0 +1,838 @@
+---
+title: "CommunityAnalysisSB"
+author: "gsartonl"
+date: "07/01/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(message=FALSE,echo=FALSE,eval=TRUE)
+require("knitr")
+```
+
+
+# DADA2 pipeline
+# 0 - Install required packages
+```{r}
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#   install.packages("BiocManager")
+# BiocManager::install(version = "3.10")
+# BiocManager::install("dada2", version = "3.10")
+# BiocManager::install("DECIPHER")
+# BiocManager::install("phyloseq")
+# BiocManager::install("biomformat")
+# BiocManager::install("microbiome/microbiome")
+# BiocManager::install("Biostrings")
+# BiocManager::install("Biostrings")
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+# BiocManager::install("DESeq2")
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#    install.packages("BiocManager")
+# BiocManager::install("decontam")
+# Load libraries
+library(dada2)
+library(ShortRead)
+library(Biostrings)
+library(ggplot2)
+library(biomformat)
+#library(microbiome)
+library(DESeq2)
+```
+
+```{r}
+
+
+primerHits <- function(primer, fn) {
+    # Counts number of reads in which the primer is found
+    nhits <- vcountPattern(primer, sread(readFastq(fn)), fixed = FALSE)
+    return(sum(nhits > 0))
+}
+
+allOrients <- function(primer) {
+    # Create all orientations of the input sequence
+    require(Biostrings)
+    dna <- DNAString(primer)  # The Biostrings works w/ DNAString objects rather than character vectors
+    orients <- c(Forward = dna, Complement = complement(dna), Reverse = reverse(dna), 
+        RevComp = reverseComplement(dna))
+    return(sapply(orients, toString))  # Convert back to character vector
+}
+```
+
+"
+primers Read1F (5′-TATGGTAATTGTGTGCCAGCMGCCGCGGTAA),
+Read2R (5′-AGTCAGTCAGCCGGACTACHVGGGTWTCTAAT), and 
+Index (5′-ATTAGAWACCCBDGTAGTCCGGCTGACTGACT).
+
+For samples prefixed with “A” (data file S1), the Illumina Nextera kit was used for library preparation of V4 region amplicons generated with the adapter-primer pairs Hyb515F_rRNA (5′-TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGTGYCAGCMGCCGCGGTA) and Hyb806R_rRNA (5′-GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAGGGACTACHVGGGTWTCTAAT)"
+
+REV_KW2 <- "GACTACHVGGGTWTCTAAT"  ## CHANGE ME to your forward primer sequence
+FWD_KW2 <- "TGCCAGCMGCCGCGGTAA"  ## CHANGE ME...
+
+# Remove primers
+
+## KW1 
+```{r}
+REV_KW1 <- "GGACTACHVGGGTWTCTAAT"
+FWD_KW1 <- "GTGYCAGCMGCCGCGGTA"
+
+path='ForPublication/00_raw/KWONG_RUN1'
+fnFs <- sort(list.files(path, pattern = "R1.fastq", full.names = TRUE))
+fnRs <- sort(list.files(path, pattern = "R2.fastq", full.names = TRUE))
+
+
+
+FWD.orients <- allOrients(FWD_KW1)
+REV.orients <- allOrients(REV_KW1)
+FWD.orients
+
+
+fnFs.filtN <- file.path(path, "filtN", basename(fnFs)) # Put N-filterd files in filtN/ subdirectory
+fnRs.filtN <- file.path(path, "filtN", basename(fnRs))
+filterAndTrim(fnFs, fnFs.filtN, fnRs, fnRs.filtN, maxN = 0, multithread = TRUE)
+
+rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.filtN[[1]]), 
+    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.filtN[[1]]))
+```
+
+### cutadapt
+
+```{r}
+cutadapt <- "/Applications/anaconda3/bin/cutadapt" 
+path.cut <- file.path(path, "cutadapt")
+if(!dir.exists(path.cut)) dir.create(path.cut)
+fnFs.cut <- file.path(path.cut, basename(fnFs))
+fnRs.cut <- file.path(path.cut, basename(fnRs))
+
+FWD.RC_KW1 <- dada2:::rc(FWD_KW1)
+REV.RC_KW1 <- dada2:::rc(REV_KW1)
+# Trim FWD and the reverse-complement of REV off of R1 (forward reads)
+R1.flags <- paste("-g", FWD_KW1, "-a", REV.RC_KW1) 
+# Trim REV and the reverse-complement of FWD off of R2 (reverse reads)
+R2.flags <- paste("-G", REV_KW1, "-A", FWD.RC_KW1) 
+# Run Cutadapt
+for(i in seq_along(fnFs)) {
+  system2(cutadapt, args = c(R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
+                             "-o", fnFs.cut[i], "-p", fnRs.cut[i], # output files
+                             fnFs.filtN[i], fnRs.filtN[i])) # input files
+}
+```
+
+## KW2
+```{r}
+FWD_KW2.1 <- "TGGGCGTAAAGGG"
+FWD_KW2 <- "GACTACHVGGGTWTCTAAT"  ## CHANGE ME to your forward primer sequence
+REV_KW2 <- "TGCCAGCMGCCGCGGTAA"  ## CHANGE ME...
+
+path='ForPublication/00_raw/KWONG_RUN2'
+fnFs <- sort(list.files(path, pattern = "R1.fastq", full.names = TRUE))
+fnRs <- sort(list.files(path, pattern = "R2.fastq", full.names = TRUE))
+
+
+
+FWD.orients <- allOrients(FWD_KW2.1)
+REV.orients <- allOrients(REV_KW2)
+FWD.orients
+
+
+fnFs.filtN <- file.path(path, "filtN", basename(fnFs)) # Put N-filterd files in filtN/ subdirectory
+fnRs.filtN <- file.path(path, "filtN", basename(fnRs))
+filterAndTrim(fnFs, fnFs.filtN, fnRs, fnRs.filtN, maxN = 0, multithread = TRUE)
+
+rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.filtN[[1]]), 
+    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.filtN[[1]]))
+```
+
+```{r}
+cutadapt <- "/Applications/anaconda3/bin/cutadapt" 
+path.cut <- file.path(path, "cutadapt")
+if(!dir.exists(path.cut)) dir.create(path.cut)
+fnFs.cut <- file.path(path.cut, basename(fnFs))
+fnRs.cut <- file.path(path.cut, basename(fnRs))
+
+FWD.RC_KW2 <- dada2:::rc(FWD_KW2)
+REV.RC_KW2 <- dada2:::rc(REV_KW2)
+# Trim FWD and the reverse-complement of REV off of R1 (forward reads)
+R1.flags <- paste("-g", FWD_KW2, "-a", REV.RC_KW2) 
+# Trim REV and the reverse-complement of FWD off of R2 (reverse reads)
+R2.flags <- paste("-G", REV_KW2, "-A", FWD.RC_KW2) 
+# Run Cutadapt
+for(i in seq_along(fnFs)) {
+  system2(cutadapt, args = c(R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
+                             "-o", fnFs.cut[i], "-p", fnRs.cut[i], # output files
+                             fnFs.filtN[i], fnRs.filtN[i])) # input files
+}
+```
+
+
+## ENGEL 
+
+```{r}
+path='ForPublication/00_raw/SB_ENGEL'
+fnFs <- sort(list.files(path, pattern = "R1.fastq", full.names = TRUE))
+fnRs <- sort(list.files(path, pattern = "R2.fastq", full.names = TRUE))
+
+fnFs.filtN <- file.path(path, "filtN", basename(fnFs)) # Put N-filterd files in filtN/ subdirectory
+fnRs.filtN <- file.path(path, "filtN", basename(fnRs))
+filterAndTrim(fnFs, fnFs.filtN, fnRs, fnRs.filtN, maxN = 0, multithread = TRUE)
+```
+
+
+```{r}
+FWD_ENGEL.1 <- "TGGGCGTAAAGGG"
+REV_ENGEL<- "GTGCCAGCMGCCGCGGTAA"
+FWD_ENGEL <- "GGACTACHVGGGTWTCTAAT"
+
+FWD.orients <- allOrients(FWD_ENGEL.1)
+REV.orients <- allOrients(REV_ENGEL)
+FWD.orients
+
+rbind(FWD.ForwardReads = sapply(FWD.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    FWD.ReverseReads = sapply(FWD.orients, primerHits, fn = fnRs.filtN[[1]]), 
+    REV.ForwardReads = sapply(REV.orients, primerHits, fn = fnFs.filtN[[1]]), 
+    REV.ReverseReads = sapply(REV.orients, primerHits, fn = fnRs.filtN[[1]]))
+```
+
+
+### cutadapt
+
+```{r}
+cutadapt <- "/Applications/anaconda3/bin/cutadapt" 
+path.cut <- file.path(path, "cutadapt")
+if(!dir.exists(path.cut)) dir.create(path.cut)
+fnFs.cut <- file.path(path.cut, basename(fnFs))
+fnRs.cut <- file.path(path.cut, basename(fnRs))
+
+FWD.RC_ENGEL <- dada2:::rc(FWD_ENGEL)
+REV.RC_ENGEL <- dada2:::rc(REV_ENGEL)
+# Trim FWD and the reverse-complement of REV off of R1 (forward reads)
+R1.flags <- paste("-g", REV_ENGEL, "-a",FWD.RC_ENGEL ) 
+# Trim REV and the reverse-complement of FWD off of R2 (reverse reads)
+R2.flags <- paste("-G",FWD_ENGEL , "-A",REV.RC_ENGEL ) 
+# Run Cutadapt
+for(i in seq_along(fnFs)) {
+  system2(cutadapt, args = c(R1.flags, R2.flags, "-n", 2, # -n 2 required to remove FWD and REV from reads
+                             '-j', 2 ,"-o", fnFs.cut[i], "-p", fnRs.cut[i], # output files
+                             fnFs.filtN[i], fnRs.filtN[i])) # input files
+}
+```
+
+
+
+```{r}
+getwd()
+```
+
+
+
+# 1 Get files path and sample names
+## 1.1 KWONG1
+```{r eval=TRUE, include=FALSE}
+path <- "/Users/garancesarton-loheac/Documents/PhD/16S_Analysis/StinglessBees/Kwong_data/ForPublication/"
+pathraw <-paste(path, "00_raw/KWONG_RUN1/cutadapt/", sep="/")
+
+# List all the files in trimmed directory
+
+# Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.trim.fastq and SAMPLENAME_R2_001.fastq
+FWDfiles_K1 <- sort(list.files(pathraw, pattern="_R1.fastq", full.names = TRUE))
+REVfiles_K1 <- sort(list.files(pathraw, pattern="_R2.fastq", full.names = TRUE))
+
+# Extract sample names, assuming filenames have format: SAMPLENAME_XXX.fastq
+sample.names_K1 <- sapply(strsplit(basename(FWDfiles_K1), "_"), `[`, 1)
+sample.names_K1
+```
+
+## 1.2 KWONG2
+```{r eval=TRUE, include=FALSE}
+library(dada2); packageVersion("dada2")
+pathraw <-paste(path, "00_raw/KWONG_RUN2/cutadapt", sep="/")
+# List all the files in trimmed directory
+#list.files(pathraw)
+# Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.trim.fastq and SAMPLENAME_R2_001.fastq
+FWDfiles_K2 <- sort(list.files(pathraw, pattern="_R1.fastq", full.names = TRUE))
+REVfiles_K2 <- sort(list.files(pathraw, pattern="_R2.fastq", full.names = TRUE))
+
+# Extract sample names, assuming filenames have format: SAMPLENAME_XXX.fastq
+sample.names_K2 <- sapply(strsplit(basename(FWDfiles_K2), "_"), `[`, 1)
+#sample.names_K2
+```
+
+## 1.1 Stingless_Bees
+```{r eval=TRUE, include=FALSE}
+pathraw <-paste(path, "00_raw/SB_ENGEL/cutadapt/", sep="/")
+# List all the files in trimmed directory
+#list.files(pathraw)
+# Forward and reverse fastq filenames have format: SAMPLENAME_R1_001.trim.fastq and SAMPLENAME_R2_001.fastq
+FWDfiles_SB <- sort(list.files(pathraw, pattern="_R1.fastq", full.names = TRUE))
+REVfiles_SB <- sort(list.files(pathraw, pattern="_R2.fastq", full.names = TRUE))
+
+# Extract sample names, assuming filenames have format: SAMPLENAME_XXX.fastq
+sample.names_SB <- sapply(strsplit(basename(FWDfiles_SB), "_"), `[`, 1)
+#sample.names_SB
+```
+
+
+# 2 Quality scores
+
+Median quality score is the green line. Quartile quality scores are the orange lines. 
+The red line (bottom) is the proportion of reads that reach the position (length). 
+
+SB_Engel : The overall quality of the reads is good, median and quartiles quality scores are above 30 (phred score).
+Reverse reads have 'lower' scores but still >30
+Kwong_Run1 : Quality drastically drops after 150bp
+
+## 2.1 KWONG_1
+```{r echo=FALSE}
+dev.new() #returns the return value of the device opened, usually invisible NULL.
+sys_str <- Sys.time()
+# Quality scores of R1 reads
+plotQualityProfile(FWDfiles_K1[1:2]) 
+
+# Quality scores of R2 reads
+plotQualityProfile(REVfiles_K1[1:2])
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+```
+## 2.2 KWONG_2
+```{r eval=TRUE, include=FALSE}
+dev.new() #returns the return value of the device opened, usually invisible NULL.
+sys_str <- Sys.time()
+# Quality scores of R1 reads
+plotQualityProfile(FWDfiles_K2[1:8]) 
+
+# Quality scores of R2 reads
+plotQualityProfile(REVfiles_K2[1:8])
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+```
+## 2.3 Stingless_Bees 
+```{r eval=TRUE, include=FALSE}
+dev.new() #returns the return value of the device opened, usually invisible NULL.
+sys_str <- Sys.time()
+# Quality scores of R1 reads
+plotQualityProfile(FWDfiles_SB[1:12]) 
+
+# Quality scores of R2 reads
+plotQualityProfile(REVfiles_SB[1:12])
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+```
+
+# 3 Trim the data
+
+Trimming should be adapted to the data-type and quality of the reads.
+`truncLen` must be large enough to maintain an overlap between forward and reverse reads of at least `20 + biological.length.variation` nucleotides.
+`derepFastq` Dereplication step : 
+all identical sequences are combiend in "unique sequences" that is associates with "abundance" (number of reads that have this unique sequence)
+
+
+
+
+## 3.1 KWONG_1
+```{r eval=TRUE, include=FALSE}
+# Place filtered files in filtered/ subdirectory
+path_trim<-paste(path, "Primers/02_trimmed_DADA/Kwong_Run1", sep="/")
+dir.create(path_trim)
+filtFWD_K1 <- file.path(path_trim, paste0(sample.names_K1, "_F_filt.fastq.gz"))
+filtREV_K1 <- file.path(path_trim,  paste0(sample.names_K1, "_R_filt.fastq.gz"))
+names(filtFWD_K1) <- sample.names_K1
+names(filtREV_K1) <- sample.names_K1
+
+sys_str <- Sys.time()
+out_K1.1 <- filterAndTrim(FWDfiles_K1, filtFWD_K1, REVfiles_K1, filtREV_K1, truncLen=c(200,185), # truncLen[[1]] + truncLen[[2]] > amplicon_length+25
+                     maxN=0, maxEE=c(2,5), truncQ=2, rm.phix=TRUE,      
+                     compress=TRUE, multithread=TRUE) 
+# On Windows set multithread=FALSE
+# all parameters but truncLen are default DADA2 params
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+derepFWD_K1 <- derepFastq(filtFWD_K1)
+derepREV_K1 <- derepFastq(filtREV_K1)
+sam.names_K1 <- sapply(strsplit(basename(filtFWD_K1),"_"),`[`,1)
+names(derepFWD_K1) <- sam.names_K1
+names(derepREV_K1) <- sam.names_K1
+length(filtFWD_K1);length(derepFWD_K1)
+length(filtREV_K1) ; length(derepREV_K1)
+
+out_K1.1
+dim(out_K1.1)
+```
+
+## 3.2 KWONG_2
+```{r eval=TRUE, include=FALSE}
+# Place filtered files in filtered/ subdirectory
+path_trim<-paste(path, "Primers/02_trimmed_DADA/Kwong_Run2", sep="/")
+dir.create(path_trim)
+filtFWD_K2 <- file.path(path_trim,  paste0(sample.names_K2, "_F_filt.fastq.gz"))
+filtREV_K2 <- file.path(path_trim,  paste0(sample.names_K2, "_R_filt.fastq.gz"))
+names(filtFWD_K2) <- sample.names_K2
+names(filtREV_K2) <- sample.names_K2
+
+sys_str <- Sys.time()
+out_K2.1 <- filterAndTrim(FWDfiles_K2, filtFWD_K2, REVfiles_K2, filtREV_K2, truncLen=c(200,180), # truncLen[[1]] + truncLen[[2]] > amplicon_length+25
+                     maxN=0, maxEE=c(2,5), truncQ=2, rm.phix=TRUE,      
+                     compress=TRUE, multithread=TRUE) 
+# On Windows set multithread=FALSE
+# all parameters but truncLen are default DADA2 params
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+derepFWD_K2 <- derepFastq(filtFWD_K2)
+derepREV_K2 <- derepFastq(filtREV_K2)
+sam.names_K2 <- sapply(strsplit(basename(filtFWD_K2),"_"),`[`,1)
+names(derepFWD_K2) <- sam.names_K2
+names(derepREV_K2) <- sam.names_K2
+out_K2.1
+
+dim(out_K2.1)
+```
+
+## 3.3 Stingless_Bees
+```{r eval=TRUE, include=FALSE}
+# Place filtered files in filtered/ subdirectory
+
+path_trim<-paste(path, "Primers/02_trimmed_DADA/SB_ENGEL", sep="/")
+dir.create(path_trim)
+filtFWD_SB <- file.path(path_trim, paste0(sample.names_SB, "_F_filt.fastq.gz"))
+filtREV_SB <- file.path(path_trim, paste0(sample.names_SB, "_R_filt.fastq.gz"))
+names(filtFWD_SB) <- sample.names_SB
+names(filtREV_SB) <- sample.names_SB
+
+sys_str <- Sys.time()
+out_SB.1 <- filterAndTrim(FWDfiles_SB, filtFWD_SB, REVfiles_SB, filtREV_SB,
+                     truncLen=c(232,231),
+                     maxN=0, maxEE=c(2,2), truncQ=2, rm.phix=TRUE,      
+                     compress=TRUE, multithread=TRUE) 
+# On Windows set multithread=FALSE
+# all parameters but truncLen are default DADA2 params
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+derepFWD_SB <- derepFastq(filtFWD_SB)
+derepREV_SB <- derepFastq(filtREV_SB)
+sam.names_SB <- sapply(strsplit(basename(filtFWD_SB),"_"),`[`,1)
+names(derepFWD_SB) <- sam.names_SB
+names(derepREV_SB) <- sam.names_SB
+
+
+out_SB.1
+```
+
+
+#4 Learn the error rates
+
+## 4.1 KWONG_1
+```{r eval=TRUE, include=FALSE}
+
+sys_str <- Sys.time()
+errF_K1 <- learnErrors(derepFWD_K1, randomize=TRUE, nbases=2e8, multithread=TRUE) 
+errR_K1 <- learnErrors(derepREV_K1, randomize=TRUE, nbases=2e8, multithread=TRUE)
+plotErrors(errF_K1, nominalQ=TRUE)
+
+# In the plots, the black line is the error model, the dots are the actual errors
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+```
+
+## 4.2 KWONG_2
+```{r eval=TRUE, include=FALSE}
+
+sys_str <- Sys.time()
+errF_K2 <- learnErrors(derepFWD_K2, randomize=TRUE, nbases=1e8, multithread=TRUE)
+errR_K2 <- learnErrors(derepREV_K2, randomize=TRUE, nbases=1e8, multithread=TRUE) 
+plotErrors(errF_K2, nominalQ=TRUE)
+
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+```
+## 4.3 Sintgless_Bees
+
+```{r eval=TRUE, include=FALSE}
+sys_str <- Sys.time()
+errF_SB <- learnErrors(derepFWD_SB, randomize=TRUE, nbases=3e8, multithread=TRUE) 
+errR_SB <- learnErrors(derepREV_SB, randomize=TRUE, nbases=3e8, multithread=TRUE) 
+plotErrors(errF_SB, nominalQ=TRUE)
+
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+```
+
+
+# 5 Sample inference
+
+```{r eval=TRUE, include=FALSE}
+sys_str <- Sys.time()
+dadaFs_K1 <- dada(filtFWD_K1, err=errF_K1, multithread=TRUE) # we need to incorporate "selfconsist" and "pool=TRUE"
+dadaRs_K1 <- dada(filtREV_K1, err=errR_K1, multithread=TRUE) # we need to incorporate "selfconsist" and "pool=TRUE"
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+dadaFs_K1[[1]]
+dadaRs_K1[[1]]
+
+
+sys_str <- Sys.time()
+dadaFs_K2 <- dada(filtFWD_K2, err=errF_K2, multithread=TRUE) # we need to incorporate "selfconsist" and "pool=TRUE"
+dadaRs_K2 <- dada(filtREV_K2, err=errR_K2, multithread=TRUE) # we need to incorporate "selfconsist" and "pool=TRUE"
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+dadaFs_K2[[1]]
+dadaRs_K2[[1]]
+
+sys_str <- Sys.time()
+dadaFs_SB <- dada(filtFWD_SB, err=errF_SB, multithread=TRUE) # we need to incorporate "selfconsist" and "pool=TRUE"
+dadaRs_SB <- dada(filtREV_SB, err=errR_SB, multithread=TRUE) # we need to incorporate "selfconsist" and "pool=TRUE"
+sys_str[2] <- Sys.time()
+sys_str
+rm(sys_str)
+
+dadaFs_SB[[1]]
+dadaRs_SB[[1]]
+```
+
+# 6 Merging paired reads
+
+```{r eval=TRUE, include=FALSE}
+mergers <- mergePairs(dadaFs_K1, derepFWD_K1, dadaRs_K1, derepREV_K1, verbose=TRUE, trimOverhang=TRUE)
+mergers.2 <- mergePairs(dadaFs_K2, derepFWD_K2, dadaRs_K2, derepREV_K2, verbose=TRUE, trimOverhang=TRUE)
+mergers.3 <- mergePairs(dadaFs_SB, derepFWD_SB, dadaRs_SB, derepREV_SB, verbose=TRUE, trimOverhang=TRUE)
+# Inspect the merger data.frame from the first sample
+head(mergers[[1]])
+head(mergers.2[[1]])
+head(mergers.3[[1]])
+```
+# 7  Prepare data analysis
+
+## 7.1 Construct sequence table
+
+! some sequences may be shorter or longer than what is expected ; V4 region is around 250 to 256 bp. 
+Majority of the reads should be around this length
+```{r eval=TRUE, include=FALSE}
+seqtab <- makeSequenceTable(mergers)
+seqtab.2 <- makeSequenceTable(mergers.2)
+seqtab.3 <- makeSequenceTable(mergers.3)
+print('KWONG1')
+dim(seqtab)
+table(nchar(getSequences(seqtab)))
+#collapsed.1 <- collapseNoMismatch(seqtab, minOverlap = 100)
+#dim(collapsed.1)
+print('KWONG2')
+dim(seqtab.2)
+table(nchar(getSequences(seqtab.2)))
+#collapsed.2 <- collapseNoMismatch(seqtab.2, minOverlap = 100)
+#dim(collapsed.2)
+print('SB')
+dim(seqtab.3)
+table(nchar(getSequences(seqtab.3)))
+#collapsed.3 <- collapseNoMismatch(seqtab.3, minOverlap = 100)
+#dim(collapsed.3)
+print('Merged tables')
+seqTabs <- mergeSequenceTables(seqtab, seqtab.2, seqtab.3)
+# Inspect distribution of sequence lengths
+table(nchar(getSequences(seqTabs)))
+print('Collapsed tables')
+collapsedTabs <- collapseNoMismatch(seqTabs, minOverlap = 100)
+dim(seqTabs)
+dim(collapsedTabs)
+table(nchar(getSequences(collapsedTabs)))
+
+
+```
+
+
+## 7.2 Remove sequences with length too distant from amplified region
+
+selection of sequences with +/- 1 bp 
+```{r eval=TRUE, include=FALSE}
+
+
+seqtabs2 <- collapsedTabs[,nchar(colnames(collapsedTabs)) %in% 251:254]
+dim(seqtabs2)
+table(nchar(getSequences(seqtabs2)))
+
+```
+ 3146 Putative ASVs remaining
+ 
+## 7.3 Remove chimeras
+Chimeric sequences are identified if they can be exactly reconstructed by combining a left-segment and a right-segment from two more abundant “parent” sequences.
+Most of your reads should remain after chimera removal (it is not uncommon for a majority of sequence variants to be removed though). If most of your reads were removed as chimeric, upstream processing may need to be revisited. In almost all cases this is caused by primer sequences with ambiguous nucleotides that were not removed prior to beginning the DADA2 pipeline.
+
+
+```{r eval=TRUE, include=FALSE}
+seqtab.nochim <- removeBimeraDenovo(seqtabs2, method="consensus", multithread=TRUE, verbose=TRUE)
+dim(seqtab.nochim)
+
+sum(seqtab.nochim)/sum(seqtabs2)
+
+# save sequences
+sequences <- data.frame(colnames(seqtab.nochim))
+colnames(sequences) <- 'sequences'
+write.csv(sequences, '220602_all_sequences.csv')
+```
+
+
+
+# 8 - Track the number of reads after each filtering steps
+Create one file containing read counts from raw data and post-trimmomatic
+```{bash, , engine.opts='-l'}
+#awk 'BEGIN{FS=","; OFS=","} FNR==NR{a[FNR]=$2;next};{print $0, a[FNR]}' 02_20201221_ReadsCount.csv  00_20201221_ReadsCount.csv | grep '[R_ ]1' > 20201221_ReadsCountsMerge.csv
+```
+
+```{r echo=FALSE}
+library(ggplot2)
+library(reshape)
+require(dplyr)
+
+preDADA2 <-read.table('00_221221_ReadsCount.csv', sep=',', header = FALSE)
+
+colnames(preDADA2) <- c('sample', 'raw')
+experiment <- c(rep('K1',89 ), rep('K2', 40), rep('SB_Engel',18))
+getN <- function(x) sum(getUniques(x))
+reads_counts <- cbind(out_K1.1, sapply(mergers, getN), rowSums(seqtab.nochim[1:89,]))
+reads_counts.2 <- cbind(out_K2.1,  sapply(mergers.2, getN), rowSums(seqtab.nochim[90:129,]))
+reads_counts.3 <- cbind(out_SB.1,  sapply(mergers.3, getN), rowSums(seqtab.nochim[130:147,]))
+
+all_reads_counts <- rbind(reads_counts,reads_counts.2, reads_counts.3)
+all_reads_counts <- cbind(all_reads_counts, experiment)
+
+colnames(all_reads_counts) <- c("input", "filtered", "merged", "nonchim", "experiment")
+all_sample_names <- rownames(all_reads_counts)
+
+# check dimensions
+dim(preDADA2) ; dim(all_reads_counts)
+# check samples order
+
+
+# Join the dataframes
+#ReadsTrack<-cbind(preDADA2[,2], all_reads_counts[,1:6])
+ReadsTrack<- as.data.frame(all_reads_counts[,1:4])
+df2 <- mutate_all(ReadsTrack, function(x) as.numeric(as.character(x)))
+require(reshape2)
+require(tibble)
+
+rownames(df2) <- all_sample_names
+ReadsTrack <- cbind(df2, experiment )
+ReadsTrack <- rownames_to_column(ReadsTrack, "sampleNames")
+colnames(ReadsTrack) <- c("sampleNames","input", "filtered", "merged", "nonchim", "experiment")
+#ggplot(data = melted, aes(x=variable, y=value)) + geom_boxplot(aes(fill=variable)) + facet_grid(. ~ 'experiment')
+
+#rownames(ReadsTrack)
+# Save Boxplot and read track table
+pdf("210106_boxplot_full_read_tracking.pdf", width = 10, height=7)
+boxplot(ReadsTrack[,-c(1,6)], ylim=c(0,120000))
+dev.off()
+write.csv(ReadsTrack, "210106_Reads_tracking.csv", row.names = F)
+# save geom_point graph
+pdf("210106_Violin_reads_tracking.pdf", width = 10, height=7)
+Molten <- melt(ReadsTrack)
+ggplot(Molten, aes(x = variable, y= value)) + geom_violin()
+dev.off()
+
+```
+
+## 8.1 Track reads through the pipeline
+```{r echo=FALSE}
+ReadsTracking <- read.csv("220406_Reads_tracking.csv")
+
+div <- function(x,y) (x/y)*100
+lostReads <- (1-(ReadsTracking[,-c(1,4)]/ReadsTracking$input))*100
+averageLost <- mean(lostReads$nonchim)
+lostperSpecies <- lostReads$nonchim
+names(lostperSpecies) <- ReadsTracking$sample.names
+print('Average')
+averageLost
+print('lost per species')
+lostperSpecies
+```
+
+# 9 Assign taxonomy
+
+## 9.1 Assigning taxonomy
+```{r eval=TRUE, include=FALSE}
+#assignTaxonomy using DADA2/Silva 
+taxa <- assignTaxonomy(seqtab.nochim, "~/Documents/PhD/16S_Analysis/SILVA/silva_nr_v132_train_set.fa.gz", multithread=TRUE)
+
+taxa <- addSpecies(taxa,"~/Documents/PhD/16S_Analysis/SILVA/silva_species_assignment_v132.fa.gz")
+taxa.print <- taxa # Removing sequence rownames for display only
+rownames(taxa.print) <- NULL
+head(taxa.print)
+path_trim<-paste(path, "03_Taxonomy", sep="/")
+dir.create(path_trim)
+write.csv2(file=paste(path_trim, "220604_Taxtable_dada2.csv", sep="/"),taxa)
+write.csv2(file=paste(path_trim, "220604_ASV_sequences.csv", sep="/"),seqtab.nochim)
+```
+
+
+# 10 Create a phyloseq object
+
+Phyloseq object is made of :
+- OTU table : Each samples and the number of paired-reads associated with the ASVs
+- Sample data : metadata associated with the samples
+- taxonomy table : Taxonomy associated with each ASVs
+- Phylogenetic tree : tree based on ASV sequences
+
+Here we are creating the phyloseq object and saving :
+- ASV table : table with ASV taxonomy (rows) and ASVs (cols)
+- .fasta : fasta file containing the ASVs sequences
+- ps.fasta : saving the phyloseq object
+```{r}
+library(ggplot2)
+library(vegan) # ecological diversity analysis
+library(dplyr)
+library(scales) # scale functions for vizualizations
+library(grid)
+library(reshape2) # data manipulation package
+library(cowplot)
+library(phyloseq)
+library(genefilter)
+# library(tidyverse)
+# library(readxl)
+
+# Set plotting theme
+theme_set(theme_bw())
+
+#Data frame containing sample information
+   samdf = read.table(file="metaData/Combined_metadata_bees.csv", sep=',', header = T, fill=TRUE, stringsAsFactors=FALSE) # fill=TRUE allows to read a table with missing entries
+rownames(samdf) = samdf$File.ID
+
+#Create a phyloseq object
+ps_raw <- phyloseq(otu_table(seqtab.nochim, taxa_are_rows=F), 
+               sample_data(samdf), 
+               tax_table(taxa))
+otu_table(ps_raw)
+sample_data(ps_raw)
+sample_names(ps_raw)
+tax_table(ps_raw)
+
+# save sequences as refseq and give new names to ASV's
+dna <- Biostrings::DNAStringSet(taxa_names(ps_raw))
+names(dna) <- taxa_names(ps_raw)
+ps_raw <- merge_phyloseq(ps_raw, dna)
+taxa_names(ps_raw) <- paste0("ASV", seq(ntaxa(ps_raw)))
+ps_raw
+ps <- ps_raw
+
+# Export ASV table (with number of paired-reads associated with an ASV)
+table = merge( tax_table(ps),t(otu_table(ps)), by="row.names")
+SRRnumb <- colnames(table)[9:length(colnames(table))]
+SampleID <- sapply(SRRnumb, function(x) as.character(samdf[x,1]))
+
+colnames(table) <- c('ASV', "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", SampleID)
+write.table(table, "Primers/220602_ASVtable.txt", sep="\t", row.names = F)
+
+# Export to FASTA with Biostrings
+writeXStringSet(refseq(ps), "Primers/220602_phyloseq_ASVs.fasta",append=FALSE, format="fasta")
+# Then align it with SINA/SILVA, and edit the taxonomy table to get it 
+
+# To save phyloseq objects:
+# With Biostrings
+writeXStringSet(refseq(ps), "210602_outfile.fasta",append=FALSE, format="fasta")
+
+# Export ASV table with presence/absence of an AVS in a sample (0/1)
+ps.pres <- transform_sample_counts(ps, function(abund) 1*(abund>0))
+df.decont.pres <- as.data.frame(taxa_sums(ps.pres))
+
+ps.pres
+
+table = merge( tax_table(ps.pres),t(otu_table(ps.pres)), by="row.names")
+SRRnumb <- colnames(table)[9:length(colnames(table))]
+SampleID <- sapply(SRRnumb, function(x) as.character(samdf[x,1]))
+colnames(table) <- c('ASV', "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", SampleID)
+write.table(table, "Primers/210602_ASVtable_Presence.txt", sep="\t", row.names = F)
+saveRDS(ps, 'Primers/210602_PhyloSeq_Object.rds')
+```
+
+
+# 11 Removing misceallenous ASVs
+Some ASVs are assigned to taxonimic ranks such as `Mitochondria` or `Chloroplast` and even `Eukaryota`. 
+These ASVs are removed to only keep ASVs assigned to bacteria as this is what is of interest for us.
+
+```{r}
+taxa_table.mit <- subset_taxa(ps, Class=="Mitochondria" | Order=="Mitochondria" | Family=="Mitochondria" | Genus=="Mitochondria", prunesamples=TRUE)
+dim(tax_table(taxa_table.mit))
+# mitochondrial ASV are present -> 17 ASV
+taxa_table.chl <- subset_taxa(ps, Class=="Chloroplast" | Order=="Chloroplast" | Family=="Chloroplast" | Genus=="Chloroplast", prunesamples=TRUE)
+dim(tax_table(taxa_table.chl))
+# Chloroplast also present in 12 ASV
+taxa_table.euk <- subset_taxa(ps, Kingdom=="Eukaryota" | Phylum== "Eukaryota"|Class=="Eukaryota" | Order=="Eukaryota" | Family=="Eukaryota" | Genus=="Eukaryota", prunesamples=TRUE)
+dim(tax_table(taxa_table.euk))
+# assigned as eukaryota or NA -> 873
+taxa_table.noCHL <- subset_taxa(ps,(Order!="Chloroplast") | is.na(Order) | Family!="Chloroplast")
+taxa_table.noCHLMIT <- subset_taxa(taxa_table.noCHL,(Order!="Rickettsiales" | Family!="Mitochondria" |Family!="Mitochondria") | is.na(Family))
+taxa_table.noCHLMITEUK <- subset_taxa(taxa_table.noCHLMIT,(Kingdom!="Eukaryota") | is.na(Kingdom))
+
+saveRDS(taxa_table.noCHLMITEUK, 'Primers/210602_PhyloSeq_Object_Bacteria.rds')
+```
+## 11.1 Saving filtered ASV tables and objects
+
+- ASV table presence : table with ASV taxonomy (rows) and ASVs (cols) - Presence/Absence of the ASV in samples
+- ASV table counts : table with ASV taxonomy (rows) and ASVs (cols) - counts of reads assigned to an ASV
+- ASV table proportion : table with ASV taxonomy (rows) and ASVs (cols) - proportion of reads assigned to an ASV
+- .fasta : fasta file containing the ASVs sequences
+- ps.fasta : saving the phyloseq object
+```{r}
+# Table of presence absence
+ps.pres <- transform_sample_counts(taxa_table.noCHLMITEUK, function(abund) 1*(abund>0))
+df.decont.pres <- as.data.frame(taxa_sums(ps.pres))
+table = merge( tax_table(ps.pres),t(otu_table(ps.pres)), by="row.names")
+SRRnumb <- colnames(table)[9:length(colnames(table))]
+SampleID <- sapply(SRRnumb, function(x) as.character(samdf[x,1]))
+colnames(table) <- c('ASV', "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", SampleID)
+write.table(table, "Primers/220602_ASVtable_Presence.txt", sep="\t", row.names = F)
+
+
+
+# Tables of ASV with counts
+table = merge( tax_table(taxa_table.noCHLMITEUK),t(otu_table(taxa_table.noCHLMITEUK)), by="row.names")
+SRRnumb <- colnames(table)[9:length(colnames(table))]
+SampleID <- sapply(SRRnumb, function(x) as.character(samdf[x,1]))
+colnames(table) <- c('ASV', "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", SampleID)
+write.table(table, "Primers/220602_ASVtable_bact.txt", sep="\t", row.names = F)
+
+
+# Table of ASV and proportion of reads/sample
+props.table <- transform_sample_counts(taxa_table.noCHLMITEUK, function(x) {x/sum(x)})
+Filtered = filter_taxa(props.table, filterfun(kOverA(1, 0.01)), TRUE)
+table = merge( tax_table(Filtered),t(otu_table(Filtered)), by="row.names")
+SRRnumb <- colnames(table)[9:length(colnames(table))]
+SampleID <- sapply(SRRnumb, function(x) as.character(samdf[x,1]))
+colnames(table) <- c('ASV', "Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species", SampleID)
+write.table(table, "ForPublication/Primers/220602_ASVtable_bact_props.txt", sep="\t", row.names = F)
+
+
+saveRDS(taxa_table.noCHLMITEUK, "ForPublication/Primers/cleaned_ASV.RDS")
+```
+
+
+## 11.2 Rarefaction curves
+
+
+
+```{r, eval=TRUE}
+rarecurve(otu_table(taxa_table.noCHLMITEUK), ylab = "Number of ASVs", xlab = "Number of sequences", step= 1000, cex=0.5)
+```
+
+
+
+
+

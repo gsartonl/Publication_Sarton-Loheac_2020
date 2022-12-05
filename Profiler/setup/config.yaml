@@ -1,0 +1,54 @@
+##### Config file ####
+# Adapt paths and filenames before runing the pipeline
+
+
+OutputDirectory:
+  - /DIRNAME
+
+genome_order:
+  - /setup/FILENAME
+
+KOfile:
+  - /FILENAME
+
+path:
+  - PATH/to/Profiler
+
+all_goshtkoala_annotations:
+  - all_genomes_ghostkoala_annotation.txt
+
+
+all_faas:
+  - /faa_input_files
+
+pythonFunctions:
+  - /setup/scripts/functions.py
+
+
+macsyfinder:
+  - /macsyfinder
+
+gapmind_aa_biosynth:
+  - /gapmind_aa_biosynth
+
+ko_pathways :
+  - /ko_pathways
+
+StrainPattern:
+  - /setup/strain_identifier.txt
+
+kegg_rules:
+  - input_rules_v3.txt
+
+all_aa:
+  - faa_input_files/all_genomes.faa
+
+all_sp_score:
+  - /setup/all_completeness_scores.txt
+
+
+MacSyModel:
+  - /setup/macsyfinder/data/models
+
+pathways_order:
+  - /setup/pathways_order.txt

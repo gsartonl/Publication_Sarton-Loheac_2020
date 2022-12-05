@@ -1,0 +1,11 @@
+channels:
+ - conda-forge
+ - bioconda
+
+dependencies:
+ - r-base=4.1.1
+ - r-gplots
+ - r-tidyverse
+ - r-rcolorbrewer
+ - r-readr
+ - r-plyr
