@@ -21,36 +21,43 @@ Ideally the locus-tags follow the format TAG_GeneNumber.
 
 
 
+### Snakefile :
 
-| Snakefile : master file with rules.
-
-
-| faa_input_files :
-    Create the directory and place your amino-acid fasta file (faa) annotations files here
-
-| ko_pathways :
-    Create the directory and place GoshtKoala annotation here. Adapt the file name in config.yaml
-
-| PaperBLAST :
-    Install the [PaperBLAST](https://github.com/morgannprice/PaperBLAST) tool here, and follow the instructions to install [Gapmind](https://github.com/morgannprice/PaperBLAST/tree/master/gaps) (required for the analysis).
-
-| setup :
-|   | envs:
-|   |   yaml files for rules conda environments
-|
-|   | macsyfinder :
-|   |  clone and install the macsyfinder tool here.
-|   |  Available at https://github.com/gem-pasteur/macsyfinder
-|
-|   | scripts:
-|   |   Snakemake rules scripts
-|
-|   | conda_Profiler.yaml : config file for the snakemake conda environment
-|
-|   | config.yaml : config file for the snakemake pipeline, path and filenames
-|   |  can be adapted here
-|
-|   | input_rules_v3.txt : pathway definition for KO pathways analysis
+ master file with rules.
 
 
-| logs : snakemake log files
+### faa_input_files :
+
+Create the directory and place your amino-acid fasta file (faa) annotations files here
+
+### ko_pathways :
+
+Create the directory and place GoshtKoala annotation here. Adapt the file name in config.yaml
+
+### PaperBLAST :
+
+Install the [PaperBLAST](https://github.com/morgannprice/PaperBLAST) tool here, and follow the instructions to install [Gapmind](https://github.com/morgannprice/PaperBLAST/tree/master/gaps) (required for the analysis).
+
+### setup :
+
+#### envs:
+
+ yaml files for rules conda environments
+
+#### macsyfinder :
+
+clone and install the macsyfinder tool here. Available at https://github.com/gem-pasteur/macsyfinder
+
+#### scripts:
+Snakemake rules scripts
+
+`conda_Profiler.yaml `: config file for the snakemake conda environment
+
+`config.yaml `: config file for the snakemake pipeline, path and filenames can be adapted here
+
+`input_rules_v3.txt` : pathway definition for KO pathways analysis
+
+
+### logs :
+
+snakemake log files

@@ -18,15 +18,25 @@ The alignment was used to compute the phylogeny with IQTree http://www.iqtree.or
 
 
 + ${Family} :
+
 │  main directory for each family
+
 ├── GenomesFiles :
+
 │	└─ + Genomes :
+
 │		└─ genomes annotations and data from NCBI / IMG downloads
+
 │
+
 ├── 01_GenomesFNA :
+
 │	│  cmd ```for FILE in $(find . )|grep -v 'interge' |grep -v 'genomic'|grep -v 'genes'| grep 'fna') ; do cp  ${FILE} ../GenomesFNA ; done ```
+
 │	│
+
 │	└── .fna files from all genomes that will be included in to the phylogeny
+
 │
 ├── 02_PROKKA :
 │	│  cmd ```sbatch 01_doAnnotation.sh```
