@@ -1,7 +1,12 @@
 # Publication_Sarton-Loheac_2022
 Scripts associated with Sarton-Loheac et al. 2022
 
-##### README DADA2 #####
+####################################################
+Summary of scripts and usage
+
+
+####################################################
+#  DADA2
 
 
 16S rRNA gene amplicon sequencing data were analysed using the DADA2 pipeline
@@ -28,148 +33,28 @@ The resulting sequence table was filtered to keep sequences in range 251-254bp (
 Taxonomic assignment of the reads was performed with the [SILVA v132 database](https://zenodo.org/record/1172783#.Y4TjH-zMKHE)
 silva_species_assignment_v132.
 
-###################### README ######################
-##              whole genome phylogeny								 
 ####################################################
+# Whole genome phylogeny								 
 
-
-
-For each phylogeny, the genomes of interest have been re-annotated with PROKKA
-to get consistent annotations.
+For each phylogeny, the genomes of interest have been re-annotated with PROKKA to get consistent annotations.
 File names are identical to the respective locus-tags.
 The strain name/number is used as locus tag.
-Then orthologous groups are inferred with OrthoFinder. Single copy orthologous
-groups are then aligned and merged into a single sequence per species.
+Then orthologous groups are inferred with OrthoFinder. Single copy orthologous groups were then aligned and merged into a single sequence per species.
+The alignment was trimmed to remove bases with <50% coverage across samples.
+The final alignment was used to compute the phylogeny with IQTree http://www.iqtree.org/
 
-The alignment was used to compute the phylogeny with IQTree http://www.iqtree.org/
 
+#######################
+# Metabolic profiler
 
-## ${Family} :
+This is a snakemake pipeline combining several tools to assess the completeness of selected metabolic pathways.
 
-main directory for each family
+For this pipeline to work, amino-acid fasta files of the genomes of interest are required.
+amino-acid biosythesis pathway completeness require the installation of [PaperBLAST](https://github.com/morgannprice/PaperBLAST) and for the secretion systems [macsyfinder](https://github.com/gem-pasteur/macsyfinder) are necessary.
 
-### GenomesFiles :
+For the other pathways/modules a rule file was created, describing the pathway steps and the associated KO numbers. To get kegg annotations, we merged the amino-acid fasta files and uploaded them on https://www.kegg.jp/ghostkoala/ (! several merge-files may be necessary as there is a file size of up to 300 MB with the limit of 500,000 sequences).
+This step can also be done locally if you have access to the kegg database
 
-#### Genomes :
+Ideally the locus-tags follow the format TAG_GeneNumber.
 
- genomes annotations and data from NCBI / IMG downloads
-
-#### 01_GenomesFNA :
-
- cmd :
-  ```{bash}
-  for FILE in $(find . )|grep -v 'interge' |grep -v 'genomic'|grep -v 'genes'| grep 'fna') ; do cp  ${FILE} ../GenomesFNA ; done 
-  ```
-
- .fna files from all genomes that will be included in to the phylogeny
-
-#### 02_PROKKA :
-cmd : 
-```{bash}
-sbatch 01_doAnnotation.sh
-```
-Genomes are annotated with (most of the time) their strain name/number as locus-tags. Directories names are .fna name of the samples.
-
-Prokka output files have same identifier as the locus-tag -> ie strain name/number
-
-##### Genomes :
-
- Genomes are re-annotated with porkka to have consistency among the annotations
- 
-### 03_GenesFaa :
- cmd :
- ```{bash}
- sbatch 02_OrthoFinder.sh -> for FILE in $(find ${AnnotationsDir} | grep -v 'Data' | grep -v 'intergenic' | grep -v 'genes' | grep -v 'Ga' | grep 'faa') ; do cp ${FILE} ${FilesLocation} ; done
- ```
- .faa files : annotation files of all the samples
-
-### 04_Aligned_OG :
-cmd : 
-``` {bash}
-sbatch 03_AlignOrthologousGroups.sh
- ```
-Each OG sequences are aligned -> OGxx_aligned.fa 
-
-### 05_Whole_Alignments :
-The pruned alignments for each orthogroup are available. The concatenation of all the aligned OG (per species) is the Core Gene alignment
-
- cmd:  
- ```{bash}
- python3 ./scripts/04_FetchAndConcat2.py 04_Aligned_OG 05_Whole_Alignments
- # or 
- 
- sbatch 05_execPythonScript.sh 
-  ```
- `CoreGeneAlignment.fasta` : concatenated OG per species -> to use for phylogeny
-
- `OGxx_aligned_prined.fasta` files : single OG aligned and pruned
-
-### 06_Results :
-
-#### OrthoFinder :
-#### Results_${Family}
-
-Single_Copy_Orthologue_Sequences : directory of interest
-
- Other directories with orthofinder results -> orthogroups,
-
-####  phylogeny :
- cmd:  
- ```{bash}
- sbatch 06_execIQTREE.sh 
- ```
-WGP_${Familiy}.contree : consensus tree.
-
-## scripts
-
-`03_AlignOrthologousGroups.sh` : to align sequences
-	 parameters :
-		--amino : use amino-acids
-		--inputorder
-		--localpair
-		--maxiterate 1000
-		
-`01_doAnnotation.sh`
-arrays :
-	- array SAMPLE : .fna file names
-	- array LocusTag : locus tag associated to .fna files (thy have to be in the same order as .fna file names)
-
- parameters :
-		--compliant
-		--evalue 0.01
-
-`06_execIQTREE.sh` :
-
- array :
-	- Genus : Genus names corresponding to the ${Family} directory name
-	
- parameters :
-		-st AA
-		-nt 16
-		-bb 16
-		-seed 1234
-		-m TEST (to find the best model for the data)
-		-pre ${Family}_Phylogeny
-
-`05_execPythonScript.sh` :
-	
-  For this script to work, we assume that the headers have a structure  "${LocusTag}_000xx or ${LocusTag}_000xxstrain_name"
-	
-parameters :
-		- arg1 : script
-		- arg2 : input directory -> path to 04_Aligned_OG
-		- arg3 : output directory -> path to 05_Whole_Alignments (scripts creates the outdir)
-		- arg4 : pipeNames -> set to TRUE if headers contains a pipe.
-
-`02_OrthoFinder.sh` :
-	
-parameters :
-		-f ${FilesLocation} : input files location, path to 03_GenesFaa
-		-t 16 : threads
-		-n ${Genus} : name for the output diresctory -> ${Genus}_Results
-
-`04_FetchAndConcat2.py `:
-python script to prune the OG alignments -> Writes all the pruned OGs and the concatenated alignment
-
-Positions in the alignments with >50% gaps "-" are removed.
 
