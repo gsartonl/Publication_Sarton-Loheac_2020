@@ -1,7 +1,7 @@
 #######################
-    ### README ###
+### README ###
 
-    Metabolic profiler
+Metabolic profiler
 
 #######################
 
